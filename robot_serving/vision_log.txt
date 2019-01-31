@@ -1,0 +1,99 @@
+No color image received.
+Message without data sent due to error in image processing.Center of mass cup1 - Orange: -0.786412,-0.272958,1.161
+Center of mass cup2 - Blue: 0.162186,-0.158864,1.024
+Center of mass cup3 - Green: -0.261969,-0.0174374,1.347
+Message correctly sent!
+Center of mass cup1 - Orange: -0.843215,-0.237192,1.209
+Center of mass cup2 - Blue: 0.161926,-0.158507,1.021
+Center of mass cup3 - Green: -0.262449,-0.017397,1.349
+Message correctly sent!
+Center of mass cup1 - Orange: -0.787845,-0.273467,1.162
+Center of mass cup2 - Blue: 0.162305,-0.158947,1.024
+Center of mass cup3 - Green: -0.262575,-0.0175908,1.349
+Message correctly sent!
+Center of mass cup1 - Orange: -0.789257,-0.27234,1.163
+Center of mass cup2 - Blue: 0.19728,-0.193135,1.245
+Center of mass cup3 - Green: -0.262372,-0.0175096,1.349
+Message correctly sent!
+Center of mass cup1 - Orange: -0.842834,-0.237096,1.214
+Center of mass cup2 - Blue: 0.162426,-0.159065,1.025
+Center of mass cup3 - Green: -0.262973,-0.0176096,1.352
+Message correctly sent!
+Center of mass cup1 - Orange: -0.844613,-0.237629,1.214
+Center of mass cup2 - Blue: 0.171098,-0.160095,1.033
+Center of mass cup3 - Green: -0.262797,-0.0176896,1.351
+Message correctly sent!
+Center of mass cup1 - Orange: -0.786904,-0.273428,1.162
+Center of mass cup2 - Blue: 0.197397,-0.193292,1.246
+Center of mass cup3 - Green: -0.261997,-0.0175759,1.347
+Message correctly sent!
+Center of mass cup1 - Orange: -0.843279,-0.237047,1.211
+Center of mass cup2 - Blue: 0.16253,-0.159027,1.025
+Center of mass cup3 - Green: -0.262252,-0.0176554,1.348
+Message correctly sent!
+Center of mass cup1 - Orange: -0.788055,-0.274194,1.164
+Center of mass cup2 - Blue: 0.514159,-0.444413,3.003
+Center of mass cup3 - Green: -0.262828,-0.0177723,1.35
+Message correctly sent!
+Center of mass cup1 - Orange: -0.786805,-0.273276,1.162
+Center of mass cup2 - Blue: 0.16239,-0.158937,1.024
+Center of mass cup3 - Green: -0.26243,-0.017653,1.349
+Message correctly sent!
+Center of mass cup1 - Orange: -0.838161,-0.238852,1.208
+Center of mass cup2 - Blue: 0.168993,-0.158516,1.019
+Center of mass cup3 - Green: -0.26214,-0.0173511,1.351
+Message correctly sent!
+Center of mass cup1 - Orange: -0.842356,-0.238499,1.212
+Center of mass cup2 - Blue: 0.162103,-0.15809,1.021
+Center of mass cup3 - Green: -0.261655,-0.0171087,1.345
+Message correctly sent!
+Center of mass cup1 - Orange: -0.788303,-0.273826,1.164
+Center of mass cup2 - Blue: 0.162335,-0.158452,1.022
+Center of mass cup3 - Green: -0.262023,-0.0177482,1.348
+Message correctly sent!
+Center of mass cup1 - Orange: inf,inf,inf
+Center of mass cup2 - Blue: inf,inf,inf
+Center of mass cup3 - Green: -0.263075,-0.0174525,1.351
+Message correctly sent!
+Center of mass cup1 - Orange: -0.790305,-0.274433,1.167
+Center of mass cup2 - Blue: 0.162241,-0.158373,1.022
+Center of mass cup3 - Green: -0.261638,-0.017209,1.344
+Message correctly sent!
+Center of mass cup1 - Orange: -0.839725,-0.23893,1.21
+Center of mass cup2 - Blue: 0.162315,-0.122303,1.1
+Center of mass cup3 - Green: -0.261659,-0.0169438,1.346
+Message correctly sent!
+Center of mass cup1 - Orange: -0.837767,-0.238965,1.206
+Center of mass cup2 - Blue: 0.161877,-0.156942,1.014
+Center of mass cup3 - Green: -0.260274,-0.0168024,1.338
+Message correctly sent!
+Center of mass cup1 - Orange: -0.740623,-0.32301,1.153
+Center of mass cup2 - Blue: 0.162142,-0.157244,1.016
+Center of mass cup3 - Green: -0.259543,-0.0165382,1.336
+Message correctly sent!
+Center of mass cup1 - Orange: -0.790222,-0.269693,1.165
+Center of mass cup2 - Blue: 0.182224,-0.162438,1.063
+Center of mass cup3 - Green: -0.259448,-0.015422,1.339
+Message correctly sent!
+Center of mass cup1 - Orange: -0.790883,-0.274517,1.167
+Center of mass cup2 - Blue: inf,inf,inf
+Center of mass cup3 - Green: -0.263784,-0.0174689,1.355
+Message correctly sent!
+Center of mass cup1 - Orange: -0.790181,-0.274586,1.167
+Center of mass cup2 - Blue: 0.162243,-0.158621,1.023
+Center of mass cup3 - Green: -0.262731,-0.0173546,1.35
+Message correctly sent!
+Center of mass cup1 - Orange: -0.724429,-0.332499,1.144
+Center of mass cup2 - Blue: 0.197967,-0.193763,1.249
+Center of mass cup3 - Green: -0.263028,-0.0170558,1.351
+Message correctly sent!
+Center of mass cup1 - Orange: inf,inf,inf
+Center of mass cup3 - Green: -0.262724,-0.0163897,1.348
+Message correctly sent!
+Center of mass cup1 - Orange: -0.8033,-0.272613,1.176
+Center of mass cup3 - Green: -0.261612,-0.0169613,1.346
+Message correctly sent!
+Center of mass cup1 - Orange: -0.844848,-0.238547,1.212
+Center of mass cup2 - Blue: 0.161974,-0.158207,1.021
+Center of mass cup3 - Green: -0.262706,-0.0175875,1.351
+Message correctly sent!

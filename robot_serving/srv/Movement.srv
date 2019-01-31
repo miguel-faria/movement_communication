@@ -1,0 +1,7 @@
+# Request fields
+float64 	x_pos			# cup x position
+float64 	y_pos			# cup y position
+float64 	z_pos			# cup z position
+---
+# Service response
+int64 		movement_success 	# an integer coding if the movement ended in success or had a problem (0 - Aborted, 1 - Success, 2 - Preempted)

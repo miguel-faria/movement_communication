@@ -1,0 +1,29 @@
+import rospy
+import baxter_interface
+from promp.copromp import CoProMP
+from promp.utils.utils import linear_phase
+from promp.utils.utils import normalized_gaussian_basis
+
+# import do teu state extractor
+
+def main():
+    # Load cleaned trajectories and respective targets
+    # Y = [y1_x y1_y y1_z, ..., y2_x, y2_y, y2_z, ...]
+    # O = [o1_x, o1_y, o1_z, ...]
+    
+    copmp = CoProMP(O, Y, 3, 7, o_dt=1, dt=0.01, Sigma_y=None)
+    copmp.build(linear_phase, lambda z, dt: normalized_gaussian_basis(2, z, dt),
+                linear_phase, lambda z, dt: normalized_gaussian_basis(10, z, dt))
+
+    # Use state extractor to obtain new target
+    # new_o = ...
+
+    copmp.condition(new_o, 1)
+    Ymp = copmp.most_probable()
+
+    # Use trajectory executor to execute the trajectory
+    # You shall turn on jtas before running this
+
+if
+ __name__ == '__main__':
+    main()

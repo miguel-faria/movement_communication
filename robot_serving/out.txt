@@ -1,0 +1,160 @@
+Ignoring file line
+Ignoring file line
+Ignoring file line
+1333.8	430.421
+356	169
+0
+0	-0	0
+inf	inf
+778.638	717.248
+208	282
+0
+-0	0	0
+[0m[ INFO] [1462554354.034711285]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554354.034826512]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554354.034849797]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1334.25	428.797
+356	168
+0
+0	-0	0
+inf	inf
+780.123	717.378
+208	282
+0
+-0	0	0
+[0m[ INFO] [1462554356.737210093]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554356.737295832]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554356.737312647]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.36	432.24
+339	170
+0
+0	-0	0
+inf	inf
+777.919	717.299
+207	282
+0
+-0	0	0
+[0m[ INFO] [1462554359.013156953]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554359.013214733]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554359.013252930]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.66	433.308
+339	170
+0
+0	-0	0
+inf	inf
+777.389	718.896
+207	282
+0
+-0	0	0
+[0m[ INFO] [1462554361.510228573]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554361.510286492]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554361.510299122]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1334.97	429.343
+356	169
+0
+0	-0	0
+inf	inf
+776.899	717.958
+207	282
+0
+-0	0	0
+[0m[ INFO] [1462554364.019694375]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554364.019744029]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554364.019756383]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.61	432.747
+339	170
+0
+0	-0	0
+inf	inf
+777.84	718.269
+207	282
+0
+-0	0	0
+[0m[ INFO] [1462554366.496766899]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554366.496873181]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554366.496889218]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.66	433.022
+339	170
+0
+0	-0	0
+inf	inf
+777.156	717.693
+207	282
+0
+-0	0	0
+[0m[ INFO] [1462554369.011343930]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554369.011406947]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554369.011428442]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.64	433.393
+339	170
+0
+0	-0	0
+inf	inf
+776.627	718.214
+207	282
+0
+-0	0	0
+[0m[ INFO] [1462554371.501154273]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554371.501226682]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554371.501247211]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.49	432.92
+339	170
+0
+0	-0	0
+inf	inf
+778.476	717.174
+208	282
+0
+-0	0	0
+[0m[ INFO] [1462554373.986290812]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554373.986348630]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554373.986382622]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.29	432.553
+339	170
+0
+0	-0	0
+inf	inf
+778.291	718.12
+208	282
+0
+-0	0	0
+[0m[ INFO] [1462554376.493295863]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554376.493375562]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554376.493387747]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+1272.51	433.241
+339	170
+0
+0	-0	0
+inf	inf
+778.377	719.422
+208	282
+0
+-0	0	0
+[0m[ INFO] [1462554378.985743915]: [VISION PROCESSING]: Publishing cups position message to topic /vision_processing/cups[0m
+[0m[ INFO] [1462554378.985805996]: [VISION PROCESSING]: Publishing complete.[0m
+[0m[ INFO] [1462554378.985816498]: [VISION PROCESSING]: 1 Subscribers in topic.
+
+[0m
+Caught the Interrupt signal.
+No problems detected.
+Clean Exit

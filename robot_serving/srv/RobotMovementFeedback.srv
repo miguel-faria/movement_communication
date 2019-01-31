@@ -1,0 +1,5 @@
+#Request Fields
+string 	limb			#robot's limb to get feedback
+---
+#Service Response
+int32 	feedback		#state of robot's movement

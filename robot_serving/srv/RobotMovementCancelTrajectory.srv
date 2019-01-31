@@ -1,0 +1,7 @@
+#Request Fields
+string 	limb			# robot's limb to act upon
+int32 	service_code		# code for action to perform: 1 - cancel movement; 2 - cancel movement and start new
+PMPTraj robot_trajectory	# new movement trajectory
+---
+#Service Response
+int32 	movement_status		# state associated with new trajectory

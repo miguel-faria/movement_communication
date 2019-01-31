@@ -1,0 +1,6 @@
+#Request Fields
+string 	limb			#robot's limb to act upon
+PMPTraj robot_trajectory	#trajectory to be executed
+---
+#Service Response
+int32 	movement_status		#state associated to sent trajectory

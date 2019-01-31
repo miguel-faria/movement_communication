@@ -1,0 +1,4 @@
+src/Movement/manager.cpp
+src/Movement/Mixed_Trajectory.cpp
+src/Movement/Movement_Manager.cpp
+src/Movement/Trajectory_Manager.cpp
