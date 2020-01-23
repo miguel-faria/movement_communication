@@ -19,8 +19,8 @@ import sys
 from copy import copy
 
 import actionlib
-import rospy
 import baxter_interface
+import rospy
 from control_msgs.msg import (
     FollowJointTrajectoryAction,
     FollowJointTrajectoryGoal,

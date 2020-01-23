@@ -77,7 +77,6 @@ class LegibleTrajectoryServer(object):
 		if msg.data == 1:
 			self._can_start = True
 
-
 	def load_trajs(self):
 		N = 20
 		legible_trajs = []
