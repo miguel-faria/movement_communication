@@ -1,0 +1,301 @@
+Iteration,Trajectory,Legibility
+1,"15.     3.75   2.5  
+ 14.215  3.754  2.5  
+ 13.429  3.758  2.5  
+ 12.644  3.761  2.5  
+ 11.858  3.765  2.5  
+ 11.072  3.769  2.5  
+ 10.287  3.772  2.5  
+  9.501  3.776  2.5  
+  8.715  3.779  2.5  
+  7.929  3.783  2.5  
+  7.143  3.786  2.5  
+  6.358  3.79   2.5  
+  5.572  3.793  2.5  
+  4.786  3.797  2.5  
+  4.     3.8    2.5  ","0.49894263580113446, 0.4640424639616173, 0.5685865029400307, 0.5105238675675942"
+100,"15.     3.75   2.5  
+ 14.256  3.795  2.5  
+ 13.484  3.813  2.5  
+ 12.709  3.827  2.5  
+ 11.93   3.837  2.5  
+ 11.148  3.845  2.5  
+ 10.363  3.849  2.5  
+  9.576  3.851  2.5  
+  8.787  3.851  2.5  
+  7.995  3.849  2.5  
+  7.202  3.845  2.5  
+  6.408  3.84   2.5  
+  5.613  3.834  2.5  
+  4.814  3.825  2.5  
+  4.     3.8    2.5  ","0.49895398442445416, 0.4748805248665225, 0.5779273496324467, 0.5172539529744745"
+200,"15.     3.75   2.5  
+ 14.296  3.836  2.5  
+ 13.539  3.867  2.5  
+ 12.773  3.891  2.5  
+ 12.001  3.908  2.5  
+ 11.223  3.919  2.5  
+ 10.439  3.924  2.5  
+  9.65   3.925  2.5  
+  8.857  3.921  2.5  
+  8.06   3.914  2.5  
+  7.26   3.903  2.5  
+  6.458  3.89   2.5  
+  5.654  3.875  2.5  
+  4.842  3.853  2.5  
+  4.     3.8    2.5  ","0.4989649308812795, 0.4914167797572527, 0.5848949168970036, 0.5250922091785118"
+300,"15.     3.75   2.5  
+ 14.336  3.876  2.5  
+ 13.592  3.921  2.5  
+ 12.837  3.954  2.5  
+ 12.071  3.978  2.5  
+ 11.296  3.992  2.5  
+ 10.513  3.999  2.5  
+  9.723  3.998  2.5  
+  8.926  3.991  2.5  
+  8.125  3.978  2.5  
+  7.318  3.961  2.5  
+  6.508  3.94   2.5  
+  5.694  3.916  2.5  
+  4.87   3.881  2.5  
+  4.     3.8    2.5  ","0.4989754926097032, 0.5173517183645455, 0.5902929061418808, 0.5355400390387098"
+400,"15.     3.75   2.5  
+ 14.378  3.917  2.5  
+ 13.648  3.977  2.5  
+ 12.903  4.021  2.5  
+ 12.144  4.051  2.5  
+ 11.373  4.069  2.5  
+ 10.59   4.076  2.5  
+  9.798  4.073  2.5  
+  8.998  4.062  2.5  
+  8.191  4.044  2.5  
+  7.377  4.02   2.5  
+  6.559  3.991  2.5  
+  5.736  3.957  2.5  
+  4.899  3.909  2.5  
+  4.     3.8    2.5  ","0.4989861277656188, 0.5619991366530931, 0.594828410950022, 0.551937891789578"
+500,"15.     3.75   2.5  
+ 14.431  3.971  2.5  
+ 13.721  4.05   2.5  
+ 12.991  4.109  2.5  
+ 12.242  4.149  2.5  
+ 11.474  4.171  2.5  
+ 10.691  4.177  2.5  
+  9.895  4.17   2.5  
+  9.089  4.153  2.5  
+  8.273  4.127  2.5  
+  7.45   4.093  2.5  
+  6.621  4.053  2.5  
+  5.786  4.007  2.5  
+  4.933  3.943  2.5  
+  4.     3.8    2.5  ","0.4989989561043553, 0.6633991888931728, 0.5995536604918432, 0.5873172684964572"
+600,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+700,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+800,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+900,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+1000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+2000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+3000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+4000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+5000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+6000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+7000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+8000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+9000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
+10000,"15.    3.75  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+   nan   nan  2.5 
+  4.    3.8   2.5 ","nan, nan, nan, nan"
