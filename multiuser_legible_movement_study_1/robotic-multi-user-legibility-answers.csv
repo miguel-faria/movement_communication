@@ -1,0 +1,228 @@
+"First six seconds of movement
+
+
+
+
+
+What object is the robot reaching for?",Rate how confident you are on your choice,"First twelve sconds of movement
+ 
+
+
+
+
+
+ 
+
+What object is the robot reaching for?",Rate how confident you are on your choice,"First eighteen seconds of movement
+
+
+
+
+What object is the robot reaching for?",Rate how confident you are on your choice,Did the video change your prediction?,Reference,Perspective,,6seg,12seg,18seg,,How clear were the robot's intentions in the movements?
+Soda Can,7,Soda Can,9,Soda Can,9,No,Soda Can,1,,TRUE,TRUE,TRUE,,6
+Soda Can,6,Soda Can,9,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,5
+Soda Can,5,Soda Can,8,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,8
+Soda Can,5,Soda Can,7,Soda Can,9,No,Soda Can,1,,TRUE,TRUE,TRUE,,6
+Soda Can,9,Soda Can,9,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,8
+Soda Can,10,Soda Can,10,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,5
+Soda Can,8,Soda Can,8,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,9
+Soda Can,7,Soda Can,6,Soda Can,9,No,Soda Can,1,,TRUE,TRUE,TRUE,,6
+Soda Can,10,Soda Can,10,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,7
+Soda Can,7,Soda Can,8,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,9
+Soda Can,9,Soda Can,9,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,9
+Soda Can,8,Soda Can,9,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,9
+Soda Can,7,Soda Can,8,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,7
+Soda Can,8,Soda Can,6,Soda Can,8,No,Soda Can,1,,TRUE,TRUE,TRUE,,10
+Soda Can,10,Soda Can,10,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,8
+Soda Can,7,Soda Can,10,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,9
+Soda Can,7,Soda Can,8,Soda Can,9,No,Soda Can,1,,TRUE,TRUE,TRUE,,3
+Soda Can,7,Soda Can,10,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,9
+Soda Can,5,Soda Can,7,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,10
+Soda Can,9,Soda Can,10,Soda Can,10,No,Soda Can,1,,TRUE,TRUE,TRUE,,7
+Rubber Duck,8,Rubber Duck,7,Rubber Duck,7,Yes,Soda Can,2,,FALSE,FALSE,FALSE,,5
+Rubber Duck,2,Rubber Duck,4,Soda Can,9,No,Soda Can,2,,FALSE,FALSE,TRUE,,9
+Rubber Duck,7,Rubber Duck,7,Soda Can,10,No,Soda Can,2,,FALSE,FALSE,TRUE,,7
+Rubber Duck,2,Soda Can,7,Soda Can,9,No,Soda Can,2,,FALSE,TRUE,TRUE,,9
+Rubber Duck,0,Soda Can,2,Soda Can,8,No,Soda Can,2,,FALSE,TRUE,TRUE,,3
+Rubber Duck,7,Soda Can,8,Soda Can,10,No,Soda Can,2,,FALSE,TRUE,TRUE,,7
+Soda Can,5,Rubber Duck,6,Soda Can,7,No,Soda Can,2,,TRUE,FALSE,TRUE,,8
+Soda Can,3,Rubber Duck,7,Soda Can,10,No,Soda Can,2,,TRUE,FALSE,TRUE,,9
+Soda Can,2,Soda Can,3,Soda Can,7,No,Soda Can,2,,TRUE,TRUE,TRUE,,6
+Soda Can,10,Soda Can,10,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,10
+Soda Can,2,Soda Can,4,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,5
+Soda Can,2,Soda Can,5,Soda Can,7,No,Soda Can,2,,TRUE,TRUE,TRUE,,6
+Soda Can,8,Soda Can,9,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,8
+Soda Can,2,Soda Can,6,Soda Can,9,No,Soda Can,2,,TRUE,TRUE,TRUE,,9
+Soda Can,8,Soda Can,8,Soda Can,9,No,Soda Can,2,,TRUE,TRUE,TRUE,,10
+Soda Can,5,Soda Can,5,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,8
+Soda Can,8,Soda Can,9,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,8
+Soda Can,6,Soda Can,7,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,7
+Soda Can,7,Soda Can,8,Soda Can,9,No,Soda Can,2,,TRUE,TRUE,TRUE,,9
+Soda Can,1,Soda Can,6,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,10
+Soda Can,7,Soda Can,5,Soda Can,7,No,Soda Can,2,,TRUE,TRUE,TRUE,,8
+Soda Can,9,Soda Can,9,Soda Can,9,No,Soda Can,2,,TRUE,TRUE,TRUE,,5
+Soda Can,5,Soda Can,8,Soda Can,10,No,Soda Can,2,,TRUE,TRUE,TRUE,,10
+Telephone,2,Telephone,4,Telephone,6,No,Soda Can,3,,FALSE,FALSE,FALSE,,8
+Rubber Duck,0,Soda Can,5,Rubber Duck,6,Yes,Soda Can,3,,FALSE,TRUE,FALSE,,7
+Rubber Duck,0,Soda Can,2,Soda Can,5,No,Soda Can,3,,FALSE,TRUE,TRUE,,5
+Rubber Duck,7,Soda Can,8,Soda Can,10,Yes,Soda Can,3,,FALSE,TRUE,TRUE,,6
+Rubber Duck,1,Soda Can,2,Soda Can,3,Yes,Soda Can,3,,FALSE,TRUE,TRUE,,10
+Rubber Duck,2,Soda Can,5,Soda Can,9,Yes,Soda Can,3,,FALSE,TRUE,TRUE,,2
+Soda Can,8,Rubber Duck,6,Soda Can,7,Yes,Soda Can,3,,TRUE,FALSE,TRUE,,5
+Soda Can,2,Soda Can,4,Rubber Duck,5,Yes,Soda Can,3,,TRUE,TRUE,FALSE,,9
+Soda Can,6,Soda Can,10,Soda Can,10,No,Soda Can,3,,TRUE,TRUE,TRUE,,7
+Soda Can,4,Soda Can,6,Soda Can,8,Yes,Soda Can,3,,TRUE,TRUE,TRUE,,10
+Soda Can,9,Soda Can,9,Soda Can,10,No,Soda Can,3,,TRUE,TRUE,TRUE,,6
+Soda Can,4,Soda Can,5,Soda Can,10,No,Soda Can,3,,TRUE,TRUE,TRUE,,9
+Soda Can,5,Soda Can,7,Soda Can,9,No,Soda Can,3,,TRUE,TRUE,TRUE,,7
+Soda Can,4,Soda Can,5,Soda Can,7,No,Soda Can,3,,TRUE,TRUE,TRUE,,6
+Soda Can,10,Soda Can,10,Soda Can,10,No,Soda Can,3,,TRUE,TRUE,TRUE,,7
+Soda Can,7,Soda Can,8,Soda Can,9,No,Soda Can,3,,TRUE,TRUE,TRUE,,7
+Soda Can,6,Soda Can,5,Soda Can,5,No,Soda Can,3,,TRUE,TRUE,TRUE,,5
+Soda Can,6,Soda Can,7,Soda Can,9,No,Soda Can,3,,TRUE,TRUE,TRUE,,6
+Soda Can,6,Soda Can,8,Soda Can,7,No,Soda Can,3,,TRUE,TRUE,TRUE,,8
+Soda Can,6,Soda Can,8,Soda Can,10,No,Soda Can,3,,TRUE,TRUE,TRUE,,9
+Soda Can,8,Soda Can,9,Soda Can,9,No,Soda Can,3,,TRUE,TRUE,TRUE,,
+Soda Can,5,Soda Can,8,Soda Can,4,No,Soda Can,3,,TRUE,TRUE,TRUE,,7.380952381
+Telephone,4,Telephone,3,Rubber Duck,8,Yes,Rubber Duck,1,,FALSE,FALSE,TRUE,,
+Rubber Duck,5,Soda Can,3,Rubber Duck,10,No,Rubber Duck,1,,TRUE,FALSE,TRUE,,
+Rubber Duck,7,Rubber Duck,9,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,3,Rubber Duck,6,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,3,Rubber Duck,7,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,5,Rubber Duck,7,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,5,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,5,Rubber Duck,5,Rubber Duck,5,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,4,Rubber Duck,6,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,10,Rubber Duck,10,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,5,Rubber Duck,7,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,4,Rubber Duck,6,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,7,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,7,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,8,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,7,Rubber Duck,8,Rubber Duck,9,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,3,Rubber Duck,7,Rubber Duck,8,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,8,Rubber Duck,9,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,9,Rubber Duck,9,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,10,Rubber Duck,10,No,Rubber Duck,1,,TRUE,TRUE,TRUE,,
+Soda Can,3,Soda Can,4,Soda Can,8,Yes,Rubber Duck,2,,FALSE,FALSE,FALSE,,
+Soda Can,7,Soda Can,6,Soda Can,8,No,Rubber Duck,2,,FALSE,FALSE,FALSE,,
+Soda Can,1,Soda Can,4,Soda Can,8,Yes,Rubber Duck,2,,FALSE,FALSE,FALSE,,
+Soda Can,6,Soda Can,5,Soda Can,6,Yes,Rubber Duck,2,,FALSE,FALSE,FALSE,,
+Soda Can,3,Soda Can,4,Soda Can,8,No,Rubber Duck,2,,FALSE,FALSE,FALSE,,
+Telephone,4,Telephone,5,Rubber Duck,7,Yes,Rubber Duck,2,,FALSE,FALSE,TRUE,,
+Telephone,8,Rubber Duck,9,Soda Can,9,Yes,Rubber Duck,2,,FALSE,TRUE,FALSE,,
+Soda Can,5,Rubber Duck,5,Soda Can,10,No,Rubber Duck,2,,FALSE,TRUE,FALSE,,
+Telephone,1,Rubber Duck,3,Rubber Duck,7,Yes,Rubber Duck,2,,FALSE,TRUE,TRUE,,
+Rubber Duck,0,Telephone,7,Rubber Duck,8,No,Rubber Duck,2,,TRUE,FALSE,TRUE,,
+Rubber Duck,3,Telephone,4,Rubber Duck,6,No,Rubber Duck,2,,TRUE,FALSE,TRUE,,
+Rubber Duck,1,Rubber Duck,3,Soda Can,6,No,Rubber Duck,2,,TRUE,TRUE,FALSE,,
+Rubber Duck,0,Rubber Duck,5,Soda Can,5,No,Rubber Duck,2,,TRUE,TRUE,FALSE,,
+Rubber Duck,1,Rubber Duck,5,Soda Can,6,Yes,Rubber Duck,2,,TRUE,TRUE,FALSE,,
+Rubber Duck,3,Rubber Duck,5,Rubber Duck,5,Yes,Rubber Duck,2,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,8,Rubber Duck,9,No,Rubber Duck,2,,TRUE,TRUE,TRUE,,
+Rubber Duck,7,Rubber Duck,6,Rubber Duck,10,No,Rubber Duck,2,,TRUE,TRUE,TRUE,,
+Rubber Duck,9,Rubber Duck,10,Rubber Duck,10,No,Rubber Duck,2,,TRUE,TRUE,TRUE,,
+Rubber Duck,8,Rubber Duck,8,Rubber Duck,10,No,Rubber Duck,2,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,6,Rubber Duck,9,No,Rubber Duck,2,,TRUE,TRUE,TRUE,,
+Rubber Duck,3,Rubber Duck,9,Rubber Duck,10,No,Rubber Duck,2,,TRUE,TRUE,TRUE,,
+Telephone,1,Telephone,4,Telephone,7,No,Rubber Duck,3,,FALSE,FALSE,FALSE,,
+Telephone,3,Telephone,6,Telephone,7,Yes,Rubber Duck,3,,FALSE,FALSE,FALSE,,
+Soda Can,6,Soda Can,8,Rubber Duck,10,No,Rubber Duck,3,,FALSE,FALSE,TRUE,,
+Soda Can,0,Soda Can,2,Rubber Duck,7,No,Rubber Duck,3,,FALSE,FALSE,TRUE,,
+Soda Can,5,Soda Can,6,Rubber Duck,7,Yes,Rubber Duck,3,,FALSE,FALSE,TRUE,,
+Soda Can,0,Rubber Duck,2,Telephone,6,No,Rubber Duck,3,,FALSE,TRUE,FALSE,,
+Rubber Duck,6,Telephone,4,Telephone,4,Yes,Rubber Duck,3,,TRUE,FALSE,FALSE,,
+Rubber Duck,3,Telephone,3,Rubber Duck,3,Yes,Rubber Duck,3,,TRUE,FALSE,TRUE,,
+Rubber Duck,3,Rubber Duck,5,Rubber Duck,6,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,7,Rubber Duck,10,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,0,Rubber Duck,6,Rubber Duck,6,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,4,Rubber Duck,7,Rubber Duck,9,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,7,Rubber Duck,9,Rubber Duck,8,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,0,Rubber Duck,1,Rubber Duck,1,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,1,Rubber Duck,1,Rubber Duck,9,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,4,Rubber Duck,5,Rubber Duck,8,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,5,Rubber Duck,7,Rubber Duck,8,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,5,Rubber Duck,5,Rubber Duck,8,No,Rubber Duck,3,,TRUE,TRUE,TRUE,,
+Rubber Duck,10,Telephone,10,Telephone,10,No,Telephone,1,,FALSE,TRUE,TRUE,,
+Telephone,9,Rubber Duck,5,Rubber Duck,1,No,Telephone,1,,TRUE,FALSE,FALSE,,
+Telephone,8,Telephone,9,Rubber Duck,9,No,Telephone,1,,TRUE,TRUE,FALSE,,
+Telephone,8,Telephone,8,Telephone,7,Yes,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,6,Telephone,8,Telephone,8,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,9,Telephone,10,Telephone,10,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,10,Telephone,10,Telephone,10,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,10,Telephone,10,Telephone,10,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,7,Telephone,9,Telephone,8,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,8,Telephone,9,Telephone,10,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,6,Telephone,7,Telephone,8,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,5,Telephone,6,Telephone,7,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,10,Telephone,10,Telephone,10,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,8,Telephone,7,Telephone,6,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,9,Telephone,9,Telephone,6,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,8,Telephone,8,Telephone,9,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,7,Telephone,9,Telephone,9,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,8,Telephone,9,Telephone,9,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,9,Telephone,8,Telephone,10,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,9,Telephone,8,Telephone,8,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,8,Telephone,2,Telephone,6,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Telephone,10,Telephone,10,Telephone,10,No,Telephone,1,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Rubber Duck,7,Soda Can,4,Yes,Telephone,2,,FALSE,FALSE,FALSE,,
+Rubber Duck,0,Telephone,1,Rubber Duck,0,Yes,Telephone,2,,FALSE,TRUE,FALSE,,
+Rubber Duck,6,Telephone,8,Telephone,10,No,Telephone,2,,FALSE,TRUE,TRUE,,
+Rubber Duck,8,Telephone,6,Telephone,8,No,Telephone,2,,FALSE,TRUE,TRUE,,
+Telephone,2,Telephone,2,Rubber Duck,3,No,Telephone,2,,TRUE,TRUE,FALSE,,
+Telephone,8,Telephone,7,Rubber Duck,4,No,Telephone,2,,TRUE,TRUE,FALSE,,
+Telephone,7,Telephone,8,Rubber Duck,5,Yes,Telephone,2,,TRUE,TRUE,FALSE,,
+Telephone,5,Telephone,7,Rubber Duck,6,Yes,Telephone,2,,TRUE,TRUE,FALSE,,
+Telephone,0,Telephone,5,Rubber Duck,8,No,Telephone,2,,TRUE,TRUE,FALSE,,
+Telephone,5,Telephone,7,Rubber Duck,9,Yes,Telephone,2,,TRUE,TRUE,FALSE,,
+Telephone,7,Telephone,9,Rubber Duck,9,Yes,Telephone,2,,TRUE,TRUE,FALSE,,
+Telephone,8,Telephone,8,Telephone,10,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,2,Telephone,6,Telephone,9,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,5,Telephone,8,Telephone,9,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,5,Telephone,5,Telephone,10,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,5,Telephone,7,Telephone,9,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,7,Telephone,7,Telephone,10,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,2,Telephone,10,Telephone,8,Yes,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,7,Telephone,8,Telephone,9,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,3,Telephone,8,Telephone,9,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Telephone,5,Telephone,8,Telephone,10,No,Telephone,2,,TRUE,TRUE,TRUE,,
+Rubber Duck,6,Soda Can,8,Rubber Duck,10,Yes,Telephone,3,,FALSE,FALSE,FALSE,,
+Rubber Duck,7,Rubber Duck,7,Rubber Duck,10,Yes,Telephone,3,,FALSE,FALSE,FALSE,,
+Soda Can,0,Rubber Duck,0,Rubber Duck,7,Yes,Telephone,3,,FALSE,FALSE,FALSE,,
+Rubber Duck,1,Telephone,6,Telephone,6,No,Telephone,3,,FALSE,TRUE,TRUE,,
+Rubber Duck,3,Telephone,5,Telephone,8,No,Telephone,3,,FALSE,TRUE,TRUE,,
+Rubber Duck,0,Telephone,4,Telephone,5,No,Telephone,3,,FALSE,TRUE,TRUE,,
+Telephone,5,Rubber Duck,5,Rubber Duck,10,Yes,Telephone,3,,TRUE,FALSE,FALSE,,
+Telephone,8,Rubber Duck,6,Rubber Duck,9,Yes,Telephone,3,,TRUE,FALSE,FALSE,,
+Telephone,3,Telephone,7,Rubber Duck,8,Yes,Telephone,3,,TRUE,TRUE,FALSE,,
+Telephone,5,Telephone,5,Rubber Duck,5,No,Telephone,3,,TRUE,TRUE,FALSE,,
+Telephone,8,Telephone,7,Rubber Duck,9,No,Telephone,3,,TRUE,TRUE,FALSE,,
+Telephone,8,Telephone,10,Telephone,10,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,4,Telephone,8,Telephone,9,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,7,Telephone,9,Telephone,10,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,0,Telephone,4,Telephone,6,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,4,Telephone,7,Telephone,9,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,6,Telephone,9,Telephone,9,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,7,Telephone,6,Telephone,10,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,1,Telephone,6,Telephone,4,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,6,Telephone,8,Telephone,10,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,2,Telephone,3,Telephone,3,No,Telephone,3,,TRUE,TRUE,TRUE,,
+Telephone,10,Telephone,10,Telephone,10,No,Telephone,3,,TRUE,TRUE,TRUE,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,150,158,152,,
+,,,,,,,,,,189,189,189,,
+,,,,,,,,,,0.793650794,0.835978836,0.804232804,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
