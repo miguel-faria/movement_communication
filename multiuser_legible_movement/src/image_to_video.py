@@ -42,7 +42,7 @@ def main():
     if len(size) > 0:
         out = cv2.VideoWriter('../data/videos/configuration_' + args.configuration[0] + '/' + args.user[0] + '/orig/' +
                               args.user[0] + '_movement_' + args.target[0] + '_' + args.movement[0] + '.mp4',
-                              cv2.VideoWriter_fourcc('m', 'p', '4', 'v'), 14, size)
+                              cv2.VideoWriter_fourcc('m', 'p', '4', 'v'), 11, size)
 
         for i in range(len(img_array)):
             out.write(img_array[i])

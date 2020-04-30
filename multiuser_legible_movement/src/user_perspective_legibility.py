@@ -474,6 +474,9 @@ class UserPerspectiveLegibility(object):
 		best_trajectory_costs = np.zeros(trajectory_length)
 		if has_transform:
 			h_trajectory = np.hstack((trajectory, np.ones((trajectory_length, 1))))
+			transform_matrix, perspective_matrix = self.getTransformationMatrices()
+			h_trajectory = h_trajectory.dot(transform_matrix.T)
+			h_trajectory = h_trajectory.dot(perspective_matrix)
 
 		for i in range(trajectory_length):
 
@@ -483,12 +486,12 @@ class UserPerspectiveLegibility(object):
 				# If the trajectory has to be transformed to the user's perspective
 				if has_transform:
 					# Get perspective and reference transformation matrices and current homogeneous trajectory
-					transform_matrix, perspective_matrix = self.getTransformationMatrices()
-					temp_traj = h_trajectory[0:i + 1].copy()
+					# transform_matrix, perspective_matrix = self.getTransformationMatrices()
+					transform_traj = h_trajectory[0:i + 1].copy()
 
 					# Project trajectory to user perspective
-					transform_traj = temp_traj.dot(transform_matrix.T)
-					transform_traj = transform_traj.dot(perspective_matrix)
+					# transform_traj = temp_traj.dot(transform_matrix.T)
+					# transform_traj = transform_traj.dot(perspective_matrix)
 
 					# Trajectory normalization
 					transform_traj = transform_traj / transform_traj[:, -1, None]
@@ -516,18 +519,24 @@ class UserPerspectiveLegibility(object):
 
 			# compute best trajectory cost
 			best_traj = np.linspace(trajectory[i, 0], trajectory[-1, 0],
-									num=(trajectory_length - i))[:, None]
+			                        num=(trajectory_length - i))[:, None]
 			for j in range(1, trajectory_dim):
 				best_traj = np.hstack((best_traj, np.linspace(trajectory[i, j], trajectory[-1, j],
-															  num=(trajectory_length - i))[:, None]))
+				                                              num=(trajectory_length - i))[:, None]))
 
 			if i < trajectory_length - 1:
 				if has_transform:
-					best_traj = np.hstack((best_traj, np.ones((trajectory_length - i, 1))))
-					transform_matrix, perspective_matrix = self.getTransformationMatrices()
+					transform_traj = np.linspace(h_trajectory[i, 0], h_trajectory[-1, 0],
+					                             num=(trajectory_length - i))[:, None]
+					for j in range(1, trajectory_dim + 1):
+						transform_traj = np.hstack((transform_traj, np.linspace(h_trajectory[i, j], h_trajectory[-1, j],
+						                                                        num=(trajectory_length - i))[:, None]))
 
-					transform_traj = best_traj.dot(transform_matrix.T)
-					transform_traj = transform_traj.dot(perspective_matrix)
+					# best_traj = np.hstack((best_traj, np.ones((trajectory_length - i, 1))))
+					# transform_matrix, perspective_matrix = self.getTransformationMatrices()
+
+					# transform_traj = best_traj.dot(transform_matrix.T)
+					# transform_traj = transform_traj.dot(perspective_matrix)
 
 					# Trajectory normalization
 					transform_traj = transform_traj / transform_traj[:, -1, None]
@@ -703,14 +712,18 @@ class UserPerspectiveLegibility(object):
 			target_costs = costs_targets[targets_keys[i]][0]
 			best_target_costs = costs_targets[targets_keys[i]][1]
 
+			# print(np.exp(-target_costs[:] - best_target_costs[:])[:, None] * 1e7)
+			# print(np.exp(-best_target_costs[0]))
+			# print('\n')
+
 			prob_target_traj = (self._targets_prob[targets_keys[i]] *
-								(np.exp(-target_costs[:] - best_target_costs[:])) /
-								np.exp(-best_target_costs[0]))
+			                    (np.exp(-target_costs[:] - best_target_costs[:])) /
+			                    np.exp(-best_target_costs[0]))
 
 			prob_target_traj_targets[targets_keys[i]] = prob_target_traj
 
 		partial_trajectory_legibility = (prob_target_traj_targets[self._target] *
-										 1 / np.array(prob_target_traj_targets.values()).sum(axis=0))
+		                                 1 / np.array(prob_target_traj_targets.values()).sum(axis=0))
 		time_function = np.array([(trajectory_length - i) / float(trajectory_length) for i in range(trajectory_length)])
 
 		# full trajectory legibility

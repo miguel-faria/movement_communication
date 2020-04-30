@@ -75,7 +75,7 @@ class LegibleMovement(object):
 		cost_goals = (np.exp(user_target_best_costs[0] - user_target_best_costs[:]) *
 		              self._targets_prob[robot_target])
 		cost_grad = ((np.exp(-user_target_best_costs[:]) * self._targets_prob[robot_target] /
-		              np.exp(-user_target_best_costs[0]))[:, None] * (user_target_grad_costs - user_target_grad_costs))
+		              np.exp(-user_target_best_costs[0]))[:, None] * (user_target_grad_costs - user_target_grad_costs)) * 1e4
 
 		for target in self._targets:
 
@@ -86,13 +86,9 @@ class LegibleMovement(object):
 				               self._targets_prob[target])
 				cost_grad += ((np.exp(-user_target_best_costs[:]) * self._targets_prob[target] /
 				               np.exp(-user_target_best_costs[0]))[:, None] *
-				              (user_target_grad_costs[:] - gradient_costs[user][robot_target][:]))
+				              (user_target_grad_costs[:] - gradient_costs[user][robot_target][:])) * 1e4
 
 		time_function = np.array([(traj_len - i) / float(traj_len) for i in range(traj_len)])
-
-		# print(cost_goal)
-		# print(cost_goals)
-		# print(cost_grad)
 
 		legibility_grad = (cost_goal / cost_goals**2)[:, None] * self._targets_prob[robot_target] * cost_grad * time_function[:, None]
 
