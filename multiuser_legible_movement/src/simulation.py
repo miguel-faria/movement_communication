@@ -207,9 +207,9 @@ def main():
 	# user2_rot = T.quaternion_from_euler(ai=math.radians(270), aj=math.radians(99), ak=math.radians(0), axes='rzxy')
 	# user3_rot = T.quaternion_from_euler(ai=math.radians(90), aj=math.radians(99), ak=math.radians(0), axes='rzxy')
 	# Configuration 2
-	user1_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
-	user2_rot = T.quaternion_from_euler(ai=math.radians(300), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
-	user3_rot = T.quaternion_from_euler(ai=math.radians(60), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
+	# user1_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
+	# user2_rot = T.quaternion_from_euler(ai=math.radians(300), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
+	# user3_rot = T.quaternion_from_euler(ai=math.radians(60), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
 	# Configuration 3
 	# user1_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
 	# user2_rot = T.quaternion_from_euler(ai=math.radians(-30), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
@@ -235,19 +235,19 @@ def main():
 	# user2_rot = T.quaternion_from_euler(ai=math.radians(270), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
 	# user3_rot = T.quaternion_from_euler(ai=math.radians(90), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
 	# Robot rotation
-	robot_rot = T.quaternion_from_euler(ai=math.radians(180), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
+	# robot_rot = T.quaternion_from_euler(ai=math.radians(180), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
 
 	# User Orientation Simulation
-	# user1_rot = T.quaternion_from_euler(ai=math.radians(180), aj=math.radians(-10), ak=math.radians(0), axes='ryxz')
-	# user2_rot = T.quaternion_from_euler(ai=math.radians(90), aj=math.radians(-10), ak=math.radians(0), axes='ryxz')
-	# user3_rot = T.quaternion_from_euler(ai=math.radians(270), aj=math.radians(-10), ak=math.radians(0), axes='ryxz')
+	user1_rot = T.quaternion_from_euler(ai=math.radians(180), aj=math.radians(-10), ak=math.radians(0), axes='ryxz')
+	user2_rot = T.quaternion_from_euler(ai=math.radians(90), aj=math.radians(-10), ak=math.radians(0), axes='ryxz')
+	user3_rot = T.quaternion_from_euler(ai=math.radians(270), aj=math.radians(-10), ak=math.radians(0), axes='ryxz')
 	# Robot Orientarion Simulation
-	# robot_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(0), ak=math.radians(0), axes='ryxz')
+	robot_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(0), ak=math.radians(0), axes='ryxz')
 
 	# Configuration 1-4, 7-8
-	user1_translation = (1500.0, 1000.0, 1000.0)
-	user2_translation = (500.0, 1500.0, 1000.0)
-	user3_translation = (2500.0, 1500.0, 1000.0)
+	# user1_translation = (1500.0, 1000.0, 1000.0)
+	# user2_translation = (500.0, 1500.0, 1000.0)
+	# user3_translation = (2500.0, 1500.0, 1000.0)
 	# Configuration 5
 	# user1_translation = (500.0, 1000.0, 1700.0)
 	# user2_translation = (500.0, 1500.0, 1700.0)
@@ -257,14 +257,14 @@ def main():
 	# user2_translation = (1000.0, 1200.0, 1700.0)
 	# user3_translation = (500.0, 1400.0, 1700.0)
 	# Robot Position
-	robot_translation = (1500.0, 2500.0, 250.0)
+	# robot_translation = (1500.0, 2500.0, 250.0)
 
 	# User Position Simulation
-	# user1_translation = (1500.0, 1000.0, 500.0)
-	# user2_translation = (3200.0, 1000.0, 1750.0)
-	# user3_translation = (-250.0, 1000.0, 1750.0)
+	user1_translation = (1500.0, 1000.0, 500.0)
+	user2_translation = (3200.0, 1000.0, 1750.0)
+	user3_translation = (-250.0, 1000.0, 1750.0)
 	# Robot Position Simulation
-	# robot_translation = (1500.0, 250.0, 2400.0)
+	robot_translation = (1500.0, 250.0, 2400.0)
 
 	# Poses
 	robot_pose = Pose(position=robot_translation, orientation=robot_rot)
@@ -275,8 +275,8 @@ def main():
 	# Configuration 1-3
 	# targets = {'A': np.array([1200.0, 1300.0, 250.0]), 'B': np.array([1500.0, 1300.0, 250.0]),
 	#            'C': np.array([1800.0, 1300.0, 250.0])}
-	targets = {'A': np.array([1200.0, 1500.0, 250.0]), 'B': np.array([1500.0, 1500.0, 250.0]),
-	           'C': np.array([1800.0, 1500.0, 250.0])}
+	# targets = {'A': np.array([1200.0, 1500.0, 250.0]), 'B': np.array([1500.0, 1500.0, 250.0]),
+	#            'C': np.array([1800.0, 1500.0, 250.0])}
 	# targets = {'A': np.array([1200.0, 2050.0, 250.0]), 'B': np.array([1500.0, 2050.0, 250.0]),
 	#            'C': np.array([1800.0, 2050.0, 250.0])}
 	# Configuration 4
@@ -296,8 +296,8 @@ def main():
 	#            'C': np.array([1500.0, 1500.0, 250.0])}
 
 	# Taeget Position Simulation
-	# targets = {'A': np.array([1800.0, 250.0, 1700.0]), 'B': np.array([1500.0, 250.0, 1700.0]),
-	#            'C': np.array([1200.0, 250.0, 1700.0])}
+	targets = {'A': np.array([1800.0, 250.0, 1700.0]), 'B': np.array([1500.0, 250.0, 1700.0]),
+	           'C': np.array([1200.0, 250.0, 1700.0])}
 	# targets = {'A': np.array([1650.0, 250.0, 1700.0]), 'B': np.array([1500.0, 250.0, 1500.0]),
 	# 		   'C': np.array([1300.0, 250.0, 1700.0])}
 	# targets = {'A': np.array([1650.0, 250.0, 1700.0]), 'B': np.array([1500.0, 250.0, 1900.0]),
@@ -335,36 +335,81 @@ def main():
 
 	# Trajectory Creation
 	n_points = 20
-	traj_x = np.linspace(robot_translation[0], targets[optim_target][0], num=n_points)[:, None]
-	traj_y = np.linspace(robot_translation[1], targets[optim_target][1], num=n_points)[:, None]
-	traj_z = np.linspace(targets[optim_target][2], targets[optim_target][2], num=n_points)[:, None]
-	offset_modulator = 300 * np.sin(np.linspace(0, np.pi, num=n_points))[:, None]
+	# traj_x = np.linspace(robot_translation[0], targets[optim_target][0], num=n_points)[:, None]
+	# traj_y = np.linspace(robot_translation[1], targets[optim_target][1], num=n_points)[:, None]
+	# traj_z = np.linspace(targets[optim_target][2], targets[optim_target][2], num=n_points)[:, None]
+	# offset_modulator = 300 * np.sin(np.linspace(0, np.pi, num=n_points))[:, None]
 	# Trajectory Creation Simulation
 	# traj_x = np.linspace(robot_translation[0], targets[optim_target][0], num=n_points)[:, None]
 	# traj_y = np.linspace(targets[optim_target][1], targets[optim_target][1], num=n_points)[:, None]
 	# traj_z = np.linspace(robot_translation[2], targets[optim_target][2], num=n_points)[:, None]
 
-	base_traj = np.hstack((traj_x, traj_y, traj_z))
-	h_mod_traj = np.hstack((traj_x, traj_y, traj_z + offset_modulator))
-	r_mod_traj = np.hstack((traj_x - offset_modulator, traj_y, traj_z))
-	l_mod_traj = np.hstack((traj_x + offset_modulator, traj_y, traj_z))
-	hr_mod_traj = np.hstack((traj_x - offset_modulator, traj_y, traj_z + offset_modulator))
-	hl_mod_traj = np.hstack((traj_x + offset_modulator, traj_y, traj_z + offset_modulator))
-	r_spring_mod_traj = np.hstack((traj_x - offset_modulator, traj_y - offset_modulator, traj_z))
-	l_spring_mod_traj = np.hstack((traj_x + offset_modulator, traj_y - offset_modulator, traj_z))
-	trajectories_sequence = [base_traj, h_mod_traj, r_mod_traj, l_mod_traj, hr_mod_traj, hl_mod_traj,
-					 r_spring_mod_traj, l_spring_mod_traj]
+	# base_traj = np.hstack((traj_x, traj_y, traj_z))
+	# h_mod_traj = np.hstack((traj_x, traj_y, traj_z + offset_modulator))
+	# r_mod_traj = np.hstack((traj_x - offset_modulator, traj_y, traj_z))
+	# l_mod_traj = np.hstack((traj_x + offset_modulator, traj_y, traj_z))
+	# hr_mod_traj = np.hstack((traj_x - offset_modulator, traj_y, traj_z + offset_modulator))
+	# hl_mod_traj = np.hstack((traj_x + offset_modulator, traj_y, traj_z + offset_modulator))
+	# r_spring_mod_traj = np.hstack((traj_x - offset_modulator, traj_y - offset_modulator, traj_z))
+	# l_spring_mod_traj = np.hstack((traj_x + offset_modulator, traj_y - offset_modulator, traj_z))
+	# trajectories_sequence = [base_traj, h_mod_traj, r_mod_traj, l_mod_traj, hr_mod_traj, hl_mod_traj,
+	# 				 r_spring_mod_traj, l_spring_mod_traj]
+	sim_traj = np.array([[1500., 160., 2400.],
+                                        [2229.021972179, 1094.811820603, 2461.051873488],
+                                        [2571.8057386, 1506.11742086, 2458.223506832],
+                                        [2872.351479368, 1851.053369991, 2447.210246514],
+                                        [3120.154370452, 2128.359522994, 2429.038810527],
+                                        [3310.678325223, 2339.968867038, 2404.593332164],
+                                        [3443.547464953, 2489.092021494, 2374.639322125],
+                                        [3521.019854748, 2579.365000782, 2339.848584302],
+                                        [3546.978897975, 2614.510178001, 2300.819647367],
+                                        [3526.311904584, 2598.229211488, 2258.093125113],
+                                        [3464.525347153, 2534.198077236, 2212.162931701],
+                                        [3367.491152402, 2426.107619416, 2163.484458679],
+                                        [3241.257556712, 2277.726841934, 2112.48062589],
+                                        [3091.882701003, 2092.982322426, 2059.546485411],
+                                        [2925.262519803, 1876.056412666, 2005.052872246],
+                                        [2746.92998649, 1631.515154348, 1949.34945329],
+                                        [2561.801757288, 1364.489093098, 1892.767367143],
+                                        [2373.838764493, 1080.953094552, 1835.621242909],
+                                        [2185.560274537, 788.181309142, 1778.20861065],
+                                        [1800., 160., 1700.]])
 
-	# user1 = UserPerspectiveLegibility(using_ros=False, orientation_type='euler', user_id='user1',
-	#                                   user_pose=user1_pose, robot_pose=robot_pose)
-	# user2 = UserPerspectiveLegibility(using_ros=False, orientation_type='euler', user_id='user2',
-	#                                   user_pose=user2_pose, robot_pose=robot_pose)
-	# user3 = UserPerspectiveLegibility(using_ros=False, orientation_type='euler', user_id='user3',
-	#                                   user_pose=user3_pose, robot_pose=robot_pose)
+	user1 = UserPerspectiveLegibility(using_ros=False, orientation_type='euler', user_id='user1',
+	                                  user_pose=user1_pose, robot_pose=robot_pose)
+	user2 = UserPerspectiveLegibility(using_ros=False, orientation_type='euler', user_id='user2',
+	                                  user_pose=user2_pose, robot_pose=robot_pose)
+	user3 = UserPerspectiveLegibility(using_ros=False, orientation_type='euler', user_id='user3',
+	                                  user_pose=user3_pose, robot_pose=robot_pose)
 
 	# user1_traj = user1.transformTrajectory(base_traj, viewport=False)
 	# user2_traj = user2.transformTrajectory(base_traj, viewport=False)
 	# user3_traj = user3.transformTrajectory(base_traj, viewport=False)
+	user1_traj = user1.transformTrajectory(sim_traj, viewport=False)
+	user2_traj = user2.transformTrajectory(sim_traj, viewport=False)
+	user3_traj = user3.transformTrajectory(sim_traj, viewport=False)
+
+	user1_transformed_u1 = np.array([0, 0, 0])
+	user1_transformed_u2 = user2.transformTrajectory(np.array([user1_translation]), viewport=False)[0]
+	user1_transformed_u3 = user3.transformTrajectory(np.array([user1_translation]), viewport=False)[0]
+	user2_transformed_u1 = user1.transformTrajectory(np.array([user2_translation]), viewport=False)[0]
+	user2_transformed_u2 = np.array([0, 0, 0])
+	user2_transformed_u3 = user3.transformTrajectory(np.array([user2_translation]), viewport=False)[0]
+	user3_transformed_u1 = user1.transformTrajectory(np.array([user3_translation]), viewport=False)[0]
+	user3_transformed_u2 = user2.transformTrajectory(np.array([user3_translation]), viewport=False)[0]
+	user3_transformed_u3 = np.array([0, 0, 0])
+	robot_transformed_u1 = user1.transformTrajectory(np.array([robot_translation]), viewport=False)[0]
+	robot_transformed_u2 = user2.transformTrajectory(np.array([robot_translation]), viewport=False)[0]
+	robot_transformed_u3 = user3.transformTrajectory(np.array([robot_translation]), viewport=False)[0]
+	targets_u1 = {'A': user1.transformTrajectory(np.array([targets['A']]), viewport=False)[0],
+				'B': user1.transformTrajectory(np.array([targets['B']]), viewport=False)[0],
+				'C': user1.transformTrajectory(np.array([targets['C']]), viewport=False)[0]}
+	targets_u2 = {'A': user2.transformTrajectory(np.array([targets['A']]), viewport=False)[0],
+				 'B': user2.transformTrajectory(np.array([targets['B']]), viewport=False)[0],
+				 'C': user2.transformTrajectory(np.array([targets['C']]), viewport=False)[0]}
+	targets_u3 = {'A': user3.transformTrajectory(np.array([targets['A']]), viewport=False)[0],
+				 'B': user3.transformTrajectory(np.array([targets['B']]), viewport=False)[0],
+				 'C': user3.transformTrajectory(np.array([targets['C']]), viewport=False)[0]}
 
 	# print('Original Trajectory')
 	# print(base_traj)
@@ -430,8 +475,29 @@ def main():
 	#         color='darkorange', marker='D', markersize=10)
 	# plt.legend(loc='best')
 	# fig.show()
-	#
-	# x = raw_input()
+
+	fig = plt.figure('Trajectories Visual User')
+	ax = fig.add_subplot(111, projection=Axes3D.name)
+	ax.plot(user2_traj[:, 0], user2_traj[:, 1], user2_traj[:, 2], 'black', label='Base')
+	# ax.plot(np.array([user1_transformed_u2[0]]), np.array([user1_transformed_u2[1]]), np.array([user1_transformed_u2[2]]),
+	#         color='red', marker='$User_1$', markersize=15, label='User1')
+	ax.plot(np.array([user2_transformed_u2[0]]), np.array([user2_transformed_u2[1]]), np.array([user2_transformed_u2[2]]),
+	        color='green', marker='2', markersize=15, label='User2')
+	# ax.plot(np.array([user3_transformed_u2[0]]), np.array([user3_transformed_u2[1]]), np.array([user3_transformed_u2[2]]),
+	#         color='brown', marker='$User_3$', markersize=15, label='User3')
+	ax.plot(np.array([robot_transformed_u2[0]]), np.array([robot_transformed_u2[1]]), np.array([robot_transformed_u2[2]]),
+	        color='blue', marker='o', markersize=7, label='Robot')
+	ax.plot(np.array([targets_u2['A'][0]]), np.array([targets_u2['A'][1]]), np.array([targets_u2['A'][2]]),
+	        color='darkorange', marker='D', markersize=10)
+	ax.plot(np.array([targets_u2['B'][0]]), np.array([targets_u2['B'][1]]), np.array([targets_u2['B'][2]]),
+	        color='darkorange', marker='D', markersize=10)
+	ax.plot(np.array([targets_u2['C'][0]]), np.array([targets_u2['C'][1]]), np.array([targets_u2['C'][2]]),
+	        color='darkorange', marker='D', markersize=10)
+	# plt.legend(loc='best')
+	ax.view_init(azim=-90, elev=120)
+	fig.show()
+
+	x = raw_input()
 
 	# Run simulation
 	n_trajectories = 8
