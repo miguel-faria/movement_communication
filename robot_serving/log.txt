@@ -1,9 +1,0 @@
-MOVEMENT MANAGER: MOVEMENT DECISION
-Target cup3 - Green: (-0.176119, -0.109485, 0.895) 	Dist: 978.814
-Result cup3 - Green: 1
-MOVEMENT MANAGER: MOVEMENT DECISION
-Target cup1 - Orange: (-0.482108, -0.124001, 0.864) 	Dist: 1052.34
-Result cup1 - Orange: 1
-MOVEMENT MANAGER: MOVEMENT DECISION
-Target cup2 - Blue: (-0.0385873, -0.0176988, 0.887) 	Dist: 942.365
-Result cup2 - Blue: 1

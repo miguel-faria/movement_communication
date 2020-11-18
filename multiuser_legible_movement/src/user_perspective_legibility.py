@@ -7,6 +7,8 @@ import tf.transformations as T
 import math
 
 from geometry_msgs.msg import Point, PointStamped, Quaternion, Pose
+from utilites import get_dict_keys, get_dict_values
+
 #from autograd import grad
 #from sympy import principal_branch
 
@@ -164,45 +166,27 @@ class UserPerspectiveLegibility(object):
 				return None
 
 		else:
-
 			user_orientation = Quaternion(self._user_pose.orientation[0], self._user_pose.orientation[1],
 										  self._user_pose.orientation[2], self._user_pose.orientation[3])
 			user_position = Point(self._user_pose.position[0], self._user_pose.position[1], self._user_pose.position[2])
-
-			robot_orientation = Quaternion(self._robot_pose.orientation[0], self._robot_pose.orientation[1],
-										  self._robot_pose.orientation[2], self._robot_pose.orientation[3])
-			robot_position = Point(self._robot_pose.position[0], self._robot_pose.position[1],
-								   self._robot_pose.position[2])
 
 			# Get robot and user orientation transformations under Euler Angles
 			if self._rotation_type.find('euler') != -1:
 
 				user_euler = T.euler_from_quaternion((user_orientation.x, user_orientation.y,
 													  user_orientation.z, user_orientation.w))
-				robot_euler = T.euler_from_quaternion((robot_orientation.x, robot_orientation.y,
-													   robot_orientation.z, robot_orientation.w))
 
 				user_transformation = T.euler_matrix(user_euler[0], user_euler[1], user_euler[2])
-
-				robot_transformation = T.euler_matrix(robot_euler[0], robot_euler[1], robot_euler[2])
 
 			# Get robot and user orientation transformations under Quaternions
 			elif self._rotation_type.find('quaternion') != -1:
 
 				user_transformation = T.quaternion_matrix((user_orientation.x, user_orientation.y,
 														   user_orientation.z, user_orientation.w))
-				robot_transformation = T.quaternion_matrix((robot_orientation.x, robot_orientation.y,
-															robot_orientation.z, robot_orientation.w))
 
 			else:
 				print('Invalid rotation type, impossible to transform points')
 				return None
-
-			# Add translation of user and robot to transformation matrix
-			robot_transformation[0, 3] = robot_position.x
-			robot_transformation[1, 3] = robot_position.y
-			robot_transformation[2, 3] = robot_position.z
-			robot_transformation = np.linalg.inv(robot_transformation)
 
 			user_transformation[0, 3] = user_position.x
 			user_transformation[1, 3] = user_position.y
@@ -272,7 +256,6 @@ class UserPerspectiveLegibility(object):
 			user_transformation[0, 3] = user_position.x
 			user_transformation[1, 3] = user_position.y
 			user_transformation[2, 3] = user_position.z
-			# print(user_transformation)
 			user_transformation = np.linalg.inv(user_transformation)
 
 		return user_transformation, self._perspective_matrix
@@ -688,8 +671,8 @@ class UserPerspectiveLegibility(object):
 				best_trajectory_costs = costs[2, :]
 
 		trajectory_length, trajectory_dim = trajectory.shape
-		target_idx = self._targets_prob.keys().index(self._target)
-		targets_keys = self._targets_prob.keys()
+		target_idx = get_dict_keys(self._targets_prob).index(self._target)
+		targets_keys = get_dict_keys(self._targets_prob)
 		costs_targets = {}
 
 		for i in range(len(targets_keys)):
@@ -723,7 +706,7 @@ class UserPerspectiveLegibility(object):
 			prob_target_traj_targets[targets_keys[i]] = prob_target_traj
 
 		partial_trajectory_legibility = (prob_target_traj_targets[self._target] *
-		                                 1 / np.array(prob_target_traj_targets.values()).sum(axis=0))
+		                                 1 / np.array(get_dict_values(prob_target_traj_targets)).sum(axis=0))
 		time_function = np.array([(trajectory_length - i) / float(trajectory_length) for i in range(trajectory_length)])
 
 		# full trajectory legibility
