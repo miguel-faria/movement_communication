@@ -1,0 +1,140 @@
+Reviewer 5 (AC)
+Meta Review
+This paper proposes that since legibility is viewpoint-dependent, a robot has to take its multiple observers into account when generating legible motion. It proposes a combined viewpoint based legibility objective, and shows in a user study that this results in better multi-user legibility for a group of observers.
+
+This is a timely paper and all reviewers acknowledge it is an important topic to address. They raise, however, several concerns that the authors might need to address before this paper is publication-ready:
+
+- Combining scores beyond averaging. The reviewers correctly pick up on some disadvantages summing the scores might have and give examples when this is not desirable. A thorough investigation of different approaches for combining scores would be useful, along with analyzing the differences in the resulting behavior. I suggest the authors think of this in part as a preference aggregation problem, where maximizing the sum might be less preferable than scores which combine maximizing the minimum legibility or inequality aversion. In case it's helpful, I would refer the authors to a paper called "How to be helpful to multiple people at once" by Gates et al., which did one analysis on this preference aggregation by a noninterested 3rd party issue.
+
+- Related, many reviewers share a concern that we don't necessarily want legibility for legibility's sake -- it comes in the context of a task. While the original papers on legibility got a way with optimizing for it, later work did show impact of legibility on the task. Similarly here, the reviewers are expecting some motivation or even experimentation with why it's helpful to be legible to multiple people. It might be as simple as preventing user frustration (can be experimented with and measured), or as complicated as needing to collaborate with multiple people at once and make sure everyone knows what everyone is doing (a bit harder, but also something that could be experimented with and measured).
+
+- The reviewers don't explicitly state this, but they hint at it: in a paper with somewhat limited algorithmic novelty, the experimentation and analysis has to carry the paper. There is absolutely nothing wrong with that, but it does place the burden on thoroughness of the results. And for this paper, aside from digging more into how to combine the scores, it seems really important to showcase the resulting motions and how they differ from single user legibility, do they intuitively make sense, etc. The paper does far too little of that, one now figure showing a rather difficult to read trajectory.
+
+- The reviewers also ask for more detail on the experiments.
+Recommendation
+Overall, I would not argue for or against this paper. I am truly on the fence.
+Reviewer 1 (reviewer)
+Contribution
+The authors present a model to generate legible motion in the context of multiple users observing a single robot by optimizing the average value of legibility across points of view of all users. They compare the performance of this model in simulation and in a user study, to a model where one user's point of view is considered at a time. This aligns with the authors' claimed contributions.
+Detailed Review
+Strengths:
+Research question is well motivated and presented.
+Technical contribution is built up in an understandable manner.
+
+Weaknesses:
+Some confusion in the study details and calculation of group legibility scores for the SUL-optimized trajectories.
+Missed out on the opportunity to better characterize the space of trajectories for multi-user interactions.
+
+Overall, the authors tackle an important research question regarding legibility in multi-user interaction scenarios and have made progress towards addressing this question.
+
+The introduction clearly presents the motivation of understanding legibility in the context of multiple users. However, I found paragraphs 2, 3 and 4 to be long-winded, specifically the elaboration about explicit and implicit communication. I think a more succinct introduction will ensure that the reader does not have to reach page 2 to get a glimpse of the research question being addressed in this paper.
+
+The background mathematics on legible motion is presented in a clear manner in Section 2. In Section 3, paragraph 2 has a lot of overlap with the introduction, and does not add much to the discussion. The rest of the section adequately presents arguments for optimizing combined group legibility as opposed to individual legibility, and the mathematics for the MUL model. In Section 3.2, the authors verify the performance of their model in simulation. I found the comparison metric confusing. "We then computed the average group legibility for each of the 48 optimized trajectories." How is this calculated for the SUL-optimized trajectory? Further, the 30% of the cases where the SUL-optimized trajectory resulted in better group legibility warrants additional discussion. Are there any images that support the advantageous POV theory? Do the authors have any theories on what constitutes an advantageous POV?
+
+I commend the authors on setting up and running a user study in the midst of a pandemic. While it was clear to me as I read the results that the 6s, 12s, 18s and 20s videos were different lengths of the same video, it could have been made clearer in the setup. Some other questions that came up: How many participants were in each of the two groups? Are the three objects in the same place for all the trials? If so, were there a total of 12 distinct trajectories (3 objects*(3 SUL + 1 MUL))? Since there are 3 times as many SUL-optimized trajectories as MUL-optimized, how were these distributed among the participants? The description of the study design would benefit from more details.
+
+The results seem to support the authors' hypotheses. While the follow-up analysis is interesting, it is not clear how many answers were discarded for the analysis, and what the characteristics are of the failure cases? If a model results in trajectories that either work very well or very poorly, would that be more or less preferable than a model that is mediocre throughout?
+
+Another point that I wanted to bring up was that the authors situate their contribution in the context of multiple users "interacting" with a single robot, while the results from the user study reflect the performance of their model in the context of "observing" a robot from multiple-points of view. I believe this distinction is important because several other factors may come into play when the robot is actually interacting with people, for example in Faria et al. [13].
+
+Suggestions:
+- Sections 1 and 3 can be made more concise.
+- Section 4.1/4.2 can benefit from clarity about the study design.
+- There was an opportunity to visually highlight differences between the trajectories obtained from the two-models. The only characteristic that was highlighted in the paper was visibility. Video or pictures of the trajectories would also help the reader visualize differences between the trajectories generated from the different models.
+- While the authors have mentioned the impact of POVs on the model, a better characterization of that could have been developed in this work, especially in the evaluation done in simulation.
+
+
+Overall, I think this paper is a good start to an important research question. However, it does not seem ready for publication because many potentially interesting details about the characteristics of the trajectories have been glossed over, and the paper would have a much more significant contribution if they were presented.
+Overall Rating
+Probably reject: I would argue for rejecting this paper.
+Reviewer 2 (reviewer)
+Contribution
+This paper's main contribution is an approach for achieving legibility of robot motions in the presence of more than one human observer. The key finding is that using the proposed approach, called MUL (multi-user legibility), to generate robot trajectories improves users' predictions of the robot's goal, and increases user-perceived clarity and confidence in their predictions. These contributions and findings align with the authors' claims.
+Detailed Review
+Summary:
+This paper considers the problem of robot legibility in multi-user interactions. The proposed approach, called multi-user legibility (MUL), generates a robot trajectory that maximizes the average of the per-user legibility scores. The paper evaluates this approach with both simulated and real users, and finds that it improves users' prediction of the robot's goal, their clarity, and their confidence in their prediction.
+
+Strengths:
+- The problem is interesting and relevant, and well-motivated: if a robot optimizes for legibility while only considering one observer's point-of-view (POV), then the resulting trajectory could be unintentionally deceptive for an observer with a different POV.
+- The user study supports the effectiveness of MUL (in a single setup): there is a statistically significant improvement in all three measures mentioned in the summary above, compared to generating legible motion while only taking one user into account.
+
+Weaknesses:
+- The main weakness is that this method has fundamental limitations—see detailed comments #1 and #2.
+- The method has limited algorithmic novelty. It builds on prior work by Nikolaidis et al. [26] that extends legibility to account for the human observer's POV. The only algorithmic contribution is to optimize for the average of these per-user legibility scores, when there is more than one user.
+- The concept of "advantageous" POVs is mentioned several times but not clearly explained—see detailed comment #3.
+- The writing could be more polished: there are quite a few grammatical errors, typos, and cumbersome phrasings.
+
+Recommendation:
+Robot legibility in multi-user interactions is a relevant, important, and underexplored problem. However, the proposed approach has fundamental limitations, so I'm leaning toward rejection.
+
+Detailed Comments / Questions:
+- Taking the average of per-user legibility scores seems like the natural and obvious thing to do, but in taking a closer look, it is misguided. Let's say there are three users, and robot trajectory A leads to legibility scores [0, X, 2X], while robot trajectory B leads to legibility scores [X, X, X]. Clearly the scores [X, X, X] are preferable (in terms of fairness across users), and thus B is better. However, because these two sets of scores have the same average (i.e., X), MUL would consider robot trajectory A and B to be equally good, and could just as well pick A. Given this example, I think it would make more sense for the robot to maximize the *minimum* user legibility score (or some approximation to this that it's easier to take gradients for), rather than the average.
+- Another example of why taking the average is misguided: imagine a scenario where three human observers are standing near each other, to the right of the robot, and another observer is standing to the left of the robot. MUL would favor the POV shared by the three human observers, because it is simply taking an average of the legibilities. Is this desirable? It seems "unfair" to the single observer standing to the left, and potentially harmful if that observer is the one currently actively collaborating with the robot, and the others are just spectators.
+- I'm confused about how one POV can be more "advantageous" than others. This is mentioned at several points throughout the paper (Section 3.2, Section 4.3, and the Conclusion), but is glossed over without a clear explanation. I would like to see a concrete example of a setup where this happens. And the existence of advantageous POVs begs the question, why not just first determine what the most advantageous POV is for a given setup, and generate legible motion with respect to that single POV?
+
+Additional comments:
+- In Section 3.1, the part about $R^{-1}$ and $P(\xi(t))$ should be moved to Section 2, to make it more clear that this was proposed in Nikolaidis et al. [26] and is not a contribution of this work.
+- Section 3.2 should be in a separate experiments section, rather than in the methods section.
+- I recommend making the plots (Figures 4 through 6) smaller, to make them easier to view at a glance.
+Overall Rating
+Probably reject: I would argue for rejecting this paper.
+Reviewer 3 (reviewer)
+Contribution
+This paper focuses on the problem of generating legible motion for a manipulator reaching for an object (out of a set of objects) in close proximity with human observers.
+a) The main contribution of this paper is a video-based user study that shows that for a particular arrangement of objects (straight line) and for a particular configuration of human observers’ POVs (3 observers, distributed across the sides of a table), optimizing for the average of 3 legibility scores, each expressed with respect to each observer’s POV results in robot motion that enables users to predict the robot’s goal quickly and confidently.
+b) The authors claim that “In a multi-party interaction, combining the perceived legibilities of the movement, from the users’ perspectives, increases the legibility of the movement for the group.
+c) I find that a and b are significantly different. The authors make a general claim which is not supported by their investigation which is limited in scope and depth.
+Detailed Review
+Summary
+This paper presents a framework for motion generation that is simultaneously legible from the perspective of multiple human observers. The framework uses a formalism of Legibility from prior work to construct an objective function for multi-user legibility. This function is a weighted sum (average) of the legibility scores corresponding to the POVs of a group of human users. The paper includes findings from an online video-based user study showing that humans perceive motion generated by the proposed framework as legible.
+
+Strengths
+1. The focus of the work is timely, as robots increasingly enter human environments, expressive motion becomes more and more important.
+2. The authors bring up a good point on the importance of the POVs and groups when it comes to formalizing and generating legible motion.
+3. The study design seems to capture important aspects of legibility, namely time, clearness and confidence.
+
+Weaknesses
+1. I find that the motivation is lacking detail. While I agree that the POV is important when thinking about legibility, I am not sure when this actually matters. For instance, it would be good to show that given the MUL (multi-user legibility) optimization performed in the paper, the human-robot team is more productive. Or at least support that argumentation in the introduction/discussion. Currently, the motivation is not convincing.
+2. The simulated study lacks detail. Which configurations of objects/observers were investigated? How sensitive is the optimization to those? How does the motion generated by MUL compare with motion generated by SUL (single user legibility)? What is the landscape of legibility? If you go full-on with legibility, what are the implications for the robot motion? Does it still look legible? The original Legibility paper has an interesting twist showing that overly legible motion (wrt the legibility objective) can actually look confusing for an observer
+3. Relatedly, I am not sure what the simulation study is showing. Are you saying that the group legibility for the condition in which you are optimizing group legibility is actually higher than taking the sum of the individually optimized legibilities? Doesn’t this follow trivially? Since you optimized for that objective, wouldn’t you expect that you would get a higher value? Also, what are the exact configurations of those scenarios? How were they selected? What makes them adequate/special/interesting?
+4. I am not sure what is the key insight underlying the algorithmic framework. Averaging (legibilities) seems like a very particular choice of a weighted sum which might not work well generally. I am assuming that depending on the object configuration and the subjects’ POVs, this averaging might prove problematic –in fact, it seems like some of the experiments mentioned actually show that. I would appreciate further investigation on that matter and some argumentation/investigation over why average might still be good enough (if so).
+5. The user study design is not clearly described. I ended up understanding that each participant watched 3 sets of 3 videos with lengths of 6, 12, 18 seconds and I am assuming that each set shows video excerpts from the same exact experiment. I feel like this could be described more clearly. Further, it is not specified how subjects rated clearness/confidence (What scale was used). I can tell from the graphs but it would be good to explain specifically. Finally, . It would be useful to investigate how different levels of MUL/SUL affect perceived observer legibility.
+6. As mentioned above, I feel like the claim that “in a multi-party interaction, combining the perceived legibilities of the movement, from the users’ perspectives, increases the legibility of the movement for the group” is not well-backed by evidence. The cases considered were very special cases and I am not convinced that they accurately address the complete question. Averaging Legibility feels too specific and not generalizable to different configurations of robots/humans/objects.
+7. There is extensive recent work on legible motion generation (including settings involving multiple users) and on implicit communication. See references below.
+8. It is not clear what robot platform is used. It is also unclear how transferrable the findings are to other robot platforms and it would be good to comment on or acknowledge that.
+9. Minor: Fig .3 is not informative. But it would be important to show some qualitative results with end-effector trajectories for example. I also do not see a need for repeating the research question or the hypotheses.
+
+Recommendation
+While this paper touches upon an interesting direction related to the importance of incorporating group and viewpoint considerations when optimizing for legibility, I find that the presented work is not ready to be included in this year’s proceedings.
+
+References
+-Mavrogiannis et al., Social Momentum: A framework for legible navigation in dynamic multi-agent environments, HRI ‘18
+-Knepper et al., Implicit Communication in a Joint Action, HRI ‘17
+-Zhao et al., An Experimental Study for Identifying Features of Legible Manipulator Paths, ISER ‘18
+-Carton et al., Measuring the Effectiveness of Readability for Mobile Robot Locomotion, IJSR ‘16
+-Bodden et al., Evaluating intent-expressive robot arm motion, RO-MAN ‘16
+Overall Rating
+Probably reject: I would argue for rejecting this paper.
+Reviewer 4 (reviewer)
+Contribution
+The paper proposes a framework for generating legible motion under the assumption of multiple observers, each observing the robot from a different viewpoint.
+Detailed Review
+The paper proposes a framework for generating legible motion under the assumption of multiple observers, each with a different field of view (FOV).
+
+The problem is motivated well -- the idea of generating legible motions by accounting for multiple viewpoints is compelling and applicable in many human-robot interaction scenarios. The literature review is thorough.
+
+Unfortunately, the paper needs a stronger experimental analysis. I provide specific comments below.
+
+I am not certain how equations (8) - (11) are derived. Given that this is the main technical contribution of the paper, it would be great to define all the symbols and discuss the intuition behind.
+
+The experimental validation lacks detail. How do the generated trajectories look like? How and when are they different than those that assume a single observer?
+
+It seems that in the scenario only three viewpoints are examined. It would be great to perform follow-up studies with more viewpoint / user combinations.
+
+I also suggest including experiments with different weight combinations. For instance, if large parts of the trajectory are occluded for a given user, the weight for the user should be smaller. It would be great to visualize the spectrum of trajectories for different weights distributions, starting from uniform to having only one positive weight for one user as in single user legibility.
+
+The paper would be stronger if the model accounted for occlusions; especially in multi-user scenarios, occlusions are expected and should affect how legibility is computed.
+
+Overall, the paper addresses an important and challenging topic. However, the current work appears preliminary at this point to have strong impact.
+Overall Rating
+Probably reject: I would argue for rejecting this paper.

@@ -18,16 +18,16 @@ from geometry_msgs.msg import Pose, Quaternion, Point
 from mpl_toolkits.mplot3d import Axes3D
 from collections import OrderedDict
 from robot_models import *
-from utilites import forward_kinematics
+from utilites import get_forward_kinematics, prepare_trajectory, transform_world
 np.set_printoptions(precision=5, linewidth=2000, threshold=10000, suppress=True)
 
 
-def run_simulation(filename: str, learn_rate: float, optimization_criteria: str, n_iterations: int, optim_target: str,
-				   traj: np.ndarray, n_targets: int, targets: dict, targets_pos: list, n_users: int, user_poses: list,
-				   u_ids: list, robot_pose: Pose, horizontal_fov: int, vertical_fov: int, user_defined_ids: list,
-				   user_poses_defined: list, use_joints: bool, robot_model: rtb.DHRobot, plotting=False,
-				   write_mode='a', store_mode='all'):
-
+def run_simulation(filename: str, learn_rate: float, decay_rate: float, optimization_criteria: str, n_iterations: int,
+				   optim_target: str, traj: np.ndarray, n_targets: int, targets: dict, targets_pos: list, n_users: int,
+				   user_poses: list, u_ids: list, robot_pose: Pose, horizontal_fov: int, vertical_fov: int,
+				   user_defined_ids: list, user_poses_defined: list, regularization: float, use_joints: bool,
+				   robot_model: rtb.DHRobot=None, model_pose: np.ndarray = np.eye(4), plotting=False, write_mode='a',
+				   store_mode='all'):
 	user1_translation = user_poses_defined[0].position
 	user2_translation = user_poses_defined[1].position
 	user3_translation = user_poses_defined[2].position
@@ -45,18 +45,20 @@ def run_simulation(filename: str, learn_rate: float, optimization_criteria: str,
 	legible_movement = LegibleMovement(n_targets=n_targets, targets_pos=targets_pos, n_users=n_users, using_ros=False,
 									   user_poses=user_poses, robot_pose=robot_pose, w_field_of_view=horizontal_fov,
 									   h_field_of_view=vertical_fov, orientation_type='euler', u_ids=u_ids,
-									   joint_optim=use_joints, robot_model=robot_model)
+									   joint_optim=use_joints, robot_model=robot_model, model_pose=model_pose,
+									   regularizaiton=regularization)
 
 	# Start optimization process
 	for i in range(n_iterations):
 		print('Iteration: ' + str(i + 1))
-		improve_trajs, best_user = legible_movement.improveTrajectory(robot_target=optim_target, trajectory=optim_traj,
-																	  optimization_criteria=optimization_criteria,
-																	  learn_rate=learn_rate)
+		improved_traj = legible_movement.improveTrajectory(robot_target=optim_target, trajectory=optim_traj,
+														   optimization_criteria=optimization_criteria,
+														   learn_rate=learn_rate)
 		if use_joints:
-			improved_traj = transform_world(forward_kinematics(robot_model, improve_trajs[best_user]), robot_pose)
+			world_improved_traj = transform_world(
+				get_forward_kinematics(robot_model)(robot_model, improved_traj), robot_pose)
 		else:
-			improved_traj = improve_trajs[best_user]
+			world_improved_traj = improved_traj
 		impossible_traj = np.isnan(improved_traj).any()
 		improved_legibility = 0
 		users = legible_movement.get_users()
@@ -64,7 +66,7 @@ def run_simulation(filename: str, learn_rate: float, optimization_criteria: str,
 
 		# Verify if improved trajectory is possible for all users
 		for user in u_ids:
-			traj_leg = users[user].trajectoryLegibility(targets_pos, improved_traj, has_transform=True)
+			traj_leg = users[user].trajectoryLegibility(targets_pos, world_improved_traj, has_transform=True)
 
 			impossible_traj = np.isnan(traj_leg)
 			if impossible_traj:
@@ -83,7 +85,7 @@ def run_simulation(filename: str, learn_rate: float, optimization_criteria: str,
 				prev_optim_traj = optim_traj
 				prev_optim_legibility = optim_legibility
 				prev_optim_user_legibilities = optim_user_legibilities
-				optim_traj = improve_trajs[best_user]
+				optim_traj = improved_traj
 				optim_legibility = improved_legibility
 				optim_user_legibilities = transformed_legibility
 				optim_iteration += 1
@@ -93,46 +95,64 @@ def run_simulation(filename: str, learn_rate: float, optimization_criteria: str,
 					improved_trajs[str(i + 1)] = improved_traj
 					trajs_legibility[str(i + 1)] = [transformed_legibility, improved_legibility]
 
+			elif abs(improved_legibility - optim_legibility) > 1e-13:
+				learn_rate /= 10.0
+				if learn_rate > 1e-10:
+					continue
+				else:
+					break
+
 			else:
 				break
 
 		# In case of an impossible trajectory, break optimization loop
 		else:
-			optim_traj = prev_optim_traj
-			optim_legibility = prev_optim_legibility
-			optim_user_legibilities = prev_optim_user_legibilities
 
-			print('Improved trajectory unfeasable. Stopping optimization process')
-			break
+			learn_rate /= 10.0
+			if learn_rate > 1e-10:
+				i -= 1
+				continue
+			else:
+				optim_traj = prev_optim_traj
+				optim_legibility = prev_optim_legibility
+				optim_user_legibilities = prev_optim_user_legibilities
+
+				print('Improved trajectory unfeasable. Stopping optimization process')
+				break
+
+		if (i + 1) % 100 == 0:
+			print(1 / (1 + decay_rate * i))
+			learn_rate = 1 / (1 + decay_rate * i) * learn_rate
 
 	# Plot of optimized and original trajectories
 	if plotting:
 		if use_joints:
-			optim_plot_traj = transform_world(forward_kinematics(robot_model, optim_traj), robot_pose)
-			orig_plot_traj = transform_world(forward_kinematics(robot_model, traj), robot_pose)
+			optim_plot_traj = transform_world(get_forward_kinematics(robot_model)(robot_model, optim_traj), robot_pose)
+			orig_plot_traj = transform_world(get_forward_kinematics(robot_model)(robot_model, traj), robot_pose)
 		else:
 			optim_plot_traj = optim_traj
 			orig_plot_traj = traj
 		fig1 = plt.figure('Optimized vs Original Trajectory')
 		plt.clf()
 		ax = fig1.gca(projection='3d')
-		ax.plot(np.array([user1_translation[0]]), np.array([user1_translation[1]]), np.array([user1_translation[2]]),
-				color='red', marker='2', markersize=15, label='User1')
-		ax.plot(np.array([user2_translation[0]]), np.array([user2_translation[1]]), np.array([user2_translation[2]]),
-				color='green', marker='2', markersize=15, label='User2')
-		ax.plot(np.array([user3_translation[0]]), np.array([user3_translation[1]]), np.array([user3_translation[2]]),
-				color='brown', marker='2', markersize=15, label='User3')
+		# ax.plot(np.array([user1_translation[0]]), np.array([user1_translation[1]]), np.array([user1_translation[2]]),
+		#         color='red', marker='2', markersize=15, label='User1')
+		# ax.plot(np.array([user2_translation[0]]), np.array([user2_translation[1]]), np.array([user2_translation[2]]),
+		#         color='green', marker='2', markersize=15, label='User2')
+		# ax.plot(np.array([user3_translation[0]]), np.array([user3_translation[1]]), np.array([user3_translation[2]]),
+		#         color='brown', marker='2', markersize=15, label='User3')
 		ax.plot(np.array([targets['A'][0]]), np.array([targets['A'][1]]), np.array([targets['A'][2]]),
 				color='darkorange', marker='D', markersize=10)
 		ax.plot(np.array([targets['B'][0]]), np.array([targets['B'][1]]), np.array([targets['B'][2]]),
 				color='darkorange', marker='D', markersize=10)
 		ax.plot(np.array([targets['C'][0]]), np.array([targets['C'][1]]), np.array([targets['C'][2]]),
 				color='darkorange', marker='D', markersize=10)
-		ax.plot(np.array([robot_translation[0]]), np.array([robot_translation[1]]), np.array([robot_translation[2]]),
-				color='blue', marker='o', markersize=10, label='Robot')
+		# ax.plot(np.array([robot_translation[0]]), np.array([robot_translation[1]]), np.array([robot_translation[2]]),
+		#         color='blue', marker='o', markersize=10, label='Robot')
 		ax.plot(np.array([optim_plot_traj[0, 0]]), np.array([optim_plot_traj[0, 1]]), np.array([optim_plot_traj[0, 2]]),
 				color='black', marker='*', markersize=10, label='Start')
-		ax.plot(np.array([optim_plot_traj[-1, 0]]), np.array([optim_plot_traj[-1, 1]]), np.array([optim_plot_traj[-1, 2]]),
+		ax.plot(np.array([optim_plot_traj[-1, 0]]), np.array([optim_plot_traj[-1, 1]]),
+				np.array([optim_plot_traj[-1, 2]]),
 				color='gold', marker='*', markersize=10, label='Goal')
 		ax.plot(optim_plot_traj[:, 0], optim_plot_traj[:, 1], optim_plot_traj[:, 2], 'green', markersize=10, marker='.',
 				label='Optimized Trajectory')
@@ -152,7 +172,8 @@ def run_simulation(filename: str, learn_rate: float, optimization_criteria: str,
 	print('----------------------------------------')
 	print('Optim Trajctory:')
 	if use_joints:
-		print(transform_world(forward_kinematics(robot_model, optim_traj), robot_pose))
+		print(transform_world(get_forward_kinematics(robot_model)(robot_model, optim_traj), robot_pose))
+		print(optim_traj)
 	else:
 		print(optim_traj)
 	print('------------------------------------')
@@ -177,14 +198,14 @@ def run_simulation(filename: str, learn_rate: float, optimization_criteria: str,
 									  using_ros=False, user_poses=user_poses_defined, robot_pose=robot_pose,
 									  w_field_of_view=horizontal_fov, h_field_of_view=vertical_fov,
 									  orientation_type='euler', u_ids=user_defined_ids,
-									  joint_optim=use_joints, robot_model=robot_model)
+									  joint_optim=use_joints, robot_model=robot_model, regularizaiton=regularization)
 	eval_users = eval_legibility.get_users()
 	eval_leg_avg = 0
 	optim_legs = []
 	print('------------------------')
 	print('Legibility for each user')
 	if use_joints:
-		world_optim_traj = transform_world(forward_kinematics(robot_model, optim_traj), robot_pose)
+		world_optim_traj = transform_world(get_forward_kinematics(robot_model)(robot_model, optim_traj), robot_pose)
 	else:
 		world_optim_traj = optim_traj
 	for user in user_defined_ids:
@@ -221,52 +242,6 @@ def run_simulation(filename: str, learn_rate: float, optimization_criteria: str,
 	write_file.close()
 
 
-def transform_world(trajectory: np.ndarray, pose: Pose) -> np.ndarray:
-	orientation = Quaternion(pose.orientation[0], pose.orientation[1],
-							 pose.orientation[2], pose.orientation[3])
-	position = Point(pose.position[0], pose.position[1], pose.position[2])
-
-	euler = T.euler_from_quaternion((orientation.x, orientation.y, orientation.z, orientation.w))
-
-	transformation = T.euler_matrix(euler[0], euler[1], euler[2])
-
-	transformation[0, 3] = position.x
-	transformation[1, 3] = position.y
-	transformation[2, 3] = position.z
-
-	transformed_trajectory = []
-	for i in range(len(trajectory)):
-		projected_point = transformation.dot(np.concatenate((trajectory[i], 1), axis=None))[:-1]
-		transformed_trajectory += [projected_point]
-
-	return np.array(transformed_trajectory)
-
-
-def prepare_trajectory(trajectory: np.ndarray, robot_pose: Pose, robot_model: rtb.DHRobot) -> np.ndarray:
-
-	robot_orientation = Quaternion(robot_pose.orientation[0], robot_pose.orientation[1],
-								   robot_pose.orientation[2], robot_pose.orientation[3])
-	robot_position = Point(robot_pose.position[0], robot_pose.position[1], robot_pose.position[2])
-
-	robot_euler = T.euler_from_quaternion((robot_orientation.x, robot_orientation.y,
-										   robot_orientation.z, robot_orientation.w))
-
-	robot_transformation = T.euler_matrix(robot_euler[0], robot_euler[1], robot_euler[2])
-
-	robot_transformation[0, 3] = robot_position.x
-	robot_transformation[1, 3] = robot_position.y
-	robot_transformation[2, 3] = robot_position.z
-	robot_transformation = np.linalg.inv(robot_transformation)
-
-	transformed_trajectory = []
-	for i in range(len(trajectory)):
-		projected_point = robot_transformation.dot(np.concatenate((trajectory[i], 1), axis=None))[:-1]/1000
-		ik_result, fail, err = robot_model.ikunc(sm.SE3(projected_point[0], projected_point[1], projected_point[2]))
-		transformed_trajectory += [ik_result]
-
-	return np.array(transformed_trajectory)
-
-
 def main():
 
 	file_path = os.path.dirname(sys.argv[0])
@@ -274,13 +249,13 @@ def main():
 	image_dir = full_path + '/images'
 
 	# Configuration 1
-	# user1_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
-	# user2_rot = T.quaternion_from_euler(ai=math.radians(270), aj=math.radians(80), ak=math.radians(0), axes='rzxy')
-	# user3_rot = T.quaternion_from_euler(ai=math.radians(90), aj=math.radians(80), ak=math.radians(0), axes='rzxy')
+	user1_rot = T.quaternion_from_euler(ai=math.radians(180), aj=math.radians(260), ak=math.radians(0), axes='rzxy')
+	user2_rot = T.quaternion_from_euler(ai=math.radians(90), aj=math.radians(260), ak=math.radians(0), axes='rzxy')
+	user3_rot = T.quaternion_from_euler(ai=math.radians(270), aj=math.radians(260), ak=math.radians(0), axes='rzxy')
 	# Configuration 2
-	user1_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
-	user2_rot = T.quaternion_from_euler(ai=math.radians(300), aj=math.radians(80), ak=math.radians(0), axes='rzxy')
-	user3_rot = T.quaternion_from_euler(ai=math.radians(60), aj=math.radians(80), ak=math.radians(0), axes='rzxy')
+	# user1_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
+	# user2_rot = T.quaternion_from_euler(ai=math.radians(300), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
+	# user3_rot = T.quaternion_from_euler(ai=math.radians(60), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
 	# Configuration 3
 	# user1_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
 	# user2_rot = T.quaternion_from_euler(ai=math.radians(-30), aj=math.radians(70), ak=math.radians(0), axes='rzxy')
@@ -306,7 +281,7 @@ def main():
 	# user2_rot = T.quaternion_from_euler(ai=math.radians(270), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
 	# user3_rot = T.quaternion_from_euler(ai=math.radians(90), aj=math.radians(65), ak=math.radians(0), axes='rzxy')
 	# Robot rotation
-	robot_rot = T.quaternion_from_euler(ai=math.radians(180), aj=math.radians(270), ak=math.radians(0), axes='rzxy')
+	robot_rot = T.quaternion_from_euler(ai=math.radians(0), aj=math.radians(90), ak=math.radians(0), axes='rzxy')
 
 	# User Orientation Simulation
 	# user1_rot = T.quaternion_from_euler(ai=math.radians(180), aj=math.radians(-10), ak=math.radians(0), axes='ryxz')
@@ -329,7 +304,7 @@ def main():
 	# user3_translation = (500.0, 1400.0, 1700.0)
 	# Configuration 7
 	# Robot Position
-	robot_translation = (1500.0, 2500.0, 250.0)
+	robot_translation = (1500.0, 3000.0, 250.0)
 
 	# User Position Simulation
 	# user1_translation = (1500.0, 1000.0, 500.0)
@@ -347,8 +322,8 @@ def main():
 	# Configuration 1-3
 	# targets = {'A': np.array([1200.0, 1300.0, 250.0]), 'B': np.array([1500.0, 1300.0, 250.0]),
 	#            'C': np.array([1800.0, 1300.0, 250.0])}
-	targets = {'A': np.array([1200.0, 1500.0, 250.0]), 'B': np.array([1500.0, 1500.0, 250.0]),
-	           'C': np.array([1800.0, 1500.0, 250.0])}
+	targets = {'A': np.array([1200.0, 1500.0, 450.0]), 'B': np.array([1500.0, 1500.0, 450.0]),
+	           'C': np.array([1800.0, 1500.0, 450.0])}
 	# targets = {'A': np.array([1200.0, 1700.0, 250.0]), 'B': np.array([1500.0, 1700.0, 250.0]),
 	#            'C': np.array([1800.0, 1700.0, 250.0])}
 	# Configuration 4
@@ -366,7 +341,7 @@ def main():
 	# Configuration 8
 	# targets = {'A': np.array([1500.0, 1200.0, 250.0]), 'B': np.array([1500.0, 1800.0, 250.0]),
 	#            'C': np.array([1500.0, 1500.0, 250.0])}
-	movement_start = np.array([1500., 2000., 250.])
+	movement_start = np.array([1500., 2000., 450.])
 
 	# Target Position Simulation
 	# targets = {'A': np.array([1800.0, 250.0, 1700.0]), 'B': np.array([1500.0, 250.0, 1700.0]),
@@ -387,11 +362,13 @@ def main():
 
 	# Parameterization
 	optimization_criteria = 'avg'
-	# optimization_criteria = 'minmax'
+	# optimization_criteria = 'max_min'
 	vertical_fov = 55
 	horizontal_fov = 120
 	n_iterations = 500000
-	learn_rate = (1.0 / 0.05)
+	learn_rate = 0.5
+	decay_rate = 0.0001
+	regularization = 60
 	n_users = 3
 	n_targets = len(targets)
 	optim_target = 'A'
@@ -399,7 +376,7 @@ def main():
 	# user_poses = [user2_pose]
 	u_ids = ['user1', 'user2', 'user3']
 	# u_ids = ['user2']
-	filename = "../data/3_users_multiple_trajs.csv"
+	filename = "../data/3_users_world_1_a.csv"
 	# filename = "../data/1_user_conf_7_u2_c.csv"
 	targets_pos = list(targets.values())
 
@@ -578,16 +555,20 @@ def main():
 	n_trajectories = 1
 	robot_model = IRB4600()
 	use_joints = True
+	model_pose = np.array([[0, 0, 1, 0],
+						   [1, 0, 0, 0],
+						   [0, 1, 0, 0],
+						   [0, 0, 0, 1]])
 	for i in range(n_trajectories):
 		print('Initial Trajectory')
 		if use_joints:
-			traj = prepare_trajectory(trajectories_sequence[i], robot_pose, robot_model)
+			traj = prepare_trajectory(trajectories_sequence[i], robot_pose, robot_model, model_pose)
 		else:
 			traj = trajectories_sequence[i]
-		run_simulation(filename, learn_rate, optimization_criteria, n_iterations, optim_target, traj, n_targets,
-					   targets, targets_pos, n_users, user_poses, u_ids, robot_pose, horizontal_fov, vertical_fov,
-					   user_defined_ids, user_poses_defined, use_joints=use_joints, robot_model=robot_model,
-					   store_mode='optim', plotting=False)
+		run_simulation(filename, learn_rate, decay_rate, optimization_criteria, n_iterations, optim_target, traj,
+					   n_targets, targets, targets_pos, n_users, user_poses, u_ids, robot_pose, horizontal_fov,
+					   vertical_fov, user_defined_ids, user_poses_defined, regularization, use_joints=use_joints,
+					   robot_model=robot_model, model_pose=model_pose, store_mode='optim', plotting=False)
 
 	print('------------------------------------------')
 	print('-------- OPTIMIZATION PROGRAM ENDED ------')

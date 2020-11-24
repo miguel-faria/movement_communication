@@ -322,6 +322,8 @@ class UserPerspectiveLegibility(object):
 					transformed_trajectory += [user_viewport_ptr[0]]
 					user_perspective_trajectory += [user_ptr.reshape(len(user_ptr))]
 
+			return np.array(transformed_trajectory), np.array(user_perspective_trajectory)
+
 		else:
 			# compute perspective transformation
 			for i in range(len(trajectory)):
@@ -332,9 +334,6 @@ class UserPerspectiveLegibility(object):
 					user_ptr = self.perspectiveTransformation(Point(trajectory[i, 0], trajectory[i, 1], trajectory[i, 2]))
 					transformed_trajectory += [user_ptr.reshape(len(user_ptr))[:-1]]
 
-		if viewport:
-			return np.array(transformed_trajectory), np.array(user_perspective_trajectory)
-		else:
 			return np.array(transformed_trajectory)
 
 	def velocityCost(self, trajectory):
@@ -456,10 +455,10 @@ class UserPerspectiveLegibility(object):
 		trajectory_costs = np.zeros(trajectory_length)
 		best_trajectory_costs = np.zeros(trajectory_length)
 		if has_transform:
-			h_trajectory = np.hstack((trajectory, np.ones((trajectory_length, 1))))
+			trajectory = np.hstack((trajectory, np.ones((trajectory_length, 1))))
 			transform_matrix, perspective_matrix = self.getTransformationMatrices()
-			h_trajectory = h_trajectory.dot(transform_matrix.T)
-			h_trajectory = h_trajectory.dot(perspective_matrix)
+			trajectory = trajectory.dot(transform_matrix.T)
+			trajectory = trajectory.dot(perspective_matrix)
 
 		for i in range(trajectory_length):
 
@@ -469,23 +468,18 @@ class UserPerspectiveLegibility(object):
 				# If the trajectory has to be transformed to the user's perspective
 				if has_transform:
 					# Get perspective and reference transformation matrices and current homogeneous trajectory
-					# transform_matrix, perspective_matrix = self.getTransformationMatrices()
-					transform_traj = h_trajectory[0:i + 1].copy()
-
-					# Project trajectory to user perspective
-					# transform_traj = temp_traj.dot(transform_matrix.T)
-					# transform_traj = transform_traj.dot(perspective_matrix)
+					prev_traj = trajectory[0:i + 1].copy()
 
 					# Trajectory normalization
-					transform_traj = transform_traj / transform_traj[:, -1, None]
-					if np.all(transform_traj[:, -2] < 0):
-						transform_traj = transform_traj[:, :-2] / -transform_traj[:, -2, None]
+					prev_traj = prev_traj / prev_traj[:, -1, None]
+					if np.all(prev_traj[:, -2] < 0):
+						prev_traj = prev_traj[:, :-2] / -prev_traj[:, -2, None]
 					else:
-						transform_traj = transform_traj[:, :-2]
-					transform_traj *= 10
+						prev_traj = prev_traj[:, :-2]
+					prev_traj *= 10
 
 					# Compute transfomed trajectory cost
-					cost_prev = self.velocityCost(transform_traj)
+					cost_prev = self.velocityCost(prev_traj)
 
 				else:
 					# Get current trajectory executed
@@ -509,28 +503,22 @@ class UserPerspectiveLegibility(object):
 
 			if i < trajectory_length - 1:
 				if has_transform:
-					transform_traj = np.linspace(h_trajectory[i, 0], h_trajectory[-1, 0],
+					prev_traj = np.linspace(trajectory[i, 0], trajectory[-1, 0],
 					                             num=(trajectory_length - i))[:, None]
 					for j in range(1, trajectory_dim + 1):
-						transform_traj = np.hstack((transform_traj, np.linspace(h_trajectory[i, j], h_trajectory[-1, j],
+						prev_traj = np.hstack((prev_traj, np.linspace(trajectory[i, j], trajectory[-1, j],
 						                                                        num=(trajectory_length - i))[:, None]))
 
-					# best_traj = np.hstack((best_traj, np.ones((trajectory_length - i, 1))))
-					# transform_matrix, perspective_matrix = self.getTransformationMatrices()
-
-					# transform_traj = best_traj.dot(transform_matrix.T)
-					# transform_traj = transform_traj.dot(perspective_matrix)
-
 					# Trajectory normalization
-					transform_traj = transform_traj / transform_traj[:, -1, None]
-					if np.all(transform_traj[:, -2] < 0):
-						transform_traj = transform_traj[:, :-2] / -transform_traj[:, -2, None]
+					prev_traj = prev_traj / prev_traj[:, -1, None]
+					if np.all(prev_traj[:, -2] < 0):
+						prev_traj = prev_traj[:, :-2] / -prev_traj[:, -2, None]
 					else:
-						transform_traj = transform_traj[:, :-2]
-					transform_traj *= 10
+						prev_traj = prev_traj[:, :-2]
+					prev_traj *= 10
 
 					# Compute best trajectory cost
-					cost_best = self.velocityCost(transform_traj)
+					cost_best = self.velocityCost(prev_traj)
 
 				else:
 					# compute best cost
@@ -590,7 +578,55 @@ class UserPerspectiveLegibility(object):
 
 		return projection_grad * 1000
 
-	def trajectoryGradCost(self, orig_trajectory=None):
+	def trajectoryGradCost(self, orig_trajectory=None, projection=True):
+
+		if orig_trajectory is None:
+			if not self._trajectory:
+				if self._using_ros and self._ros_active:
+					rospy.logerr('[PERSPECTIVE LEGIBILITY] No trajectory defined!')
+				else:
+					print('[PERSPECTIVE LEGIBILITY] No trajectory defined!')
+
+				return None
+
+			else:
+				trajectory = self._trajectory
+
+		else:
+			trajectory = orig_trajectory
+
+		trajectory_length, trajectory_dim = trajectory.shape
+		grad_costs = np.zeros((trajectory_length, trajectory_dim-1))
+		if projection:
+			trajectory = np.hstack((trajectory, np.ones((trajectory_length, 1))))
+			transform_matrix, perspective_matrix = self.getTransformationMatrices()
+			trajectory = trajectory.dot(transform_matrix.T)
+			trajectory = trajectory.dot(perspective_matrix)
+
+		for i in range(trajectory_length):
+
+			if i > 0:
+				if projection:
+					prev_traj = trajectory[0:i + 1]
+					prev_traj = prev_traj / prev_traj[:, -1, None]
+					if np.all(prev_traj[:, -2] < 0):
+						prev_traj = prev_traj[:, :-2] / -prev_traj[:, -2, None]
+					else:
+						prev_traj = prev_traj[:, :-2]
+					prev_traj *= 10
+
+					grad_costs[i] = self.velocityGrad(prev_traj)
+
+				else:
+					grad_costs[i] = self.velocityGrad(trajectory[0:i + 1])
+
+			# in the first point there is no trajectory executed so there is no cost
+			else:
+				grad_costs[i] = np.zeros(trajectory_dim - 1)
+
+		return grad_costs
+
+	def trajectoryRemainGradCost(self, orig_trajectory=None, projection=True):
 
 		if orig_trajectory is None:
 			if not self._trajectory:
@@ -618,14 +654,15 @@ class UserPerspectiveLegibility(object):
 				best_traj = np.hstack((best_traj, np.linspace(orig_trajectory[i, j], orig_trajectory[-1, j],
 															  num=(trajectory_length - i))[:, None]))
 
-			best_traj = np.hstack((best_traj, np.ones((trajectory_length - i, 1))))
-			best_traj = best_traj.dot(transform_matrix.T).dot(perspective_matrix)
-			best_traj = best_traj / best_traj[:, -1, None]
-			if np.all(best_traj[:, -2] < 0):
-				best_traj = best_traj[:, :-2] / -best_traj[:, -2, None]
-			else:
-				best_traj = best_traj[:, :-2]
-			best_traj *= 10
+			if projection:
+				best_traj = np.hstack((best_traj, np.ones((trajectory_length - i, 1))))
+				best_traj = best_traj.dot(transform_matrix.T).dot(perspective_matrix)
+				best_traj = best_traj / best_traj[:, -1, None]
+				if np.all(best_traj[:, -2] < 0):
+					best_traj = best_traj[:, :-2] / -best_traj[:, -2, None]
+				else:
+					best_traj = best_traj[:, :-2]
+				best_traj *= 10
 
 			if i < trajectory_length - 1:
 				grad_cost = self.velocityGrad(best_traj)

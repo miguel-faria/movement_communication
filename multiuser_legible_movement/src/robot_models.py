@@ -66,10 +66,9 @@ class IRB4600(rtb.DHRobot):
             manufacturer='ABB'
         )
 
-        self.addconfiguration(
-            "qz", np.array([0, 0, 0, 0, 0, 0]))
-        self.addconfiguration(
-            "qr", np.array([np.pi, 0, 0, 0, np.pi / 2, 0]))
+        self.addconfiguration("qz", np.array([0, 0, 0, 0, 0, 0]))
+        self.addconfiguration("qd", np.array([0, -90 * deg, 180 * deg, 0, 0, -90 * deg]))
+        self.addconfiguration("qr", np.array([90 * deg, -108 * deg, 75 * deg, 0*deg, 135*deg, 0]))
 
 
 # UR10e RoboticsToolbox
