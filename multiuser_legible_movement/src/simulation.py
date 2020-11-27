@@ -368,7 +368,7 @@ def main():
 	n_iterations = 500000
 	learn_rate = 0.5
 	decay_rate = 0.0001
-	regularization = 60
+	regularization = 0.35
 	n_users = 3
 	n_targets = len(targets)
 	optim_target = 'A'

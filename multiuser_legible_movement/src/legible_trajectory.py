@@ -162,61 +162,12 @@ class LegibleMovement(object):
 
 		return improve_traj
 
-	def max_optimization(self, world_trajectory: np.ndarray, legibility_grads: dict,
-						 gradient_regularizations: dict, beta_regularizations: dict,
-						 joint_trajectory: np.ndarray, learn_rate: float = 0.01):
-
-		traj_len, traj_dim = world_trajectory.shape
-		grad_sum = np.zeros((self._n_users, traj_len, traj_dim))
-		grad_reg_sum = np.zeros((self._n_users, traj_len, traj_dim))
-		beta_reg_sum = np.zeros((self._n_users, traj_len, traj_dim))
-
-		for i in range(self._n_users):
-
-			user = self._u_ids[i]
-			user_M, _ = self._users[user].getCostMatrices(world_trajectory)
-			transform_matrix, _ = self._users[user].getTransformationMatrices()
-			transform_matrix = np.delete(np.delete(transform_matrix, -1, 0), -1, 1)
-			projection_grad = self._users[user].trajectory2DProjectGrad(world_trajectory)
-			user_M = user_M.T.dot(user_M)
-			M_inv = np.linalg.inv(user_M)
-
-			gradient = []
-			gradient_reg = []
-			beta_reg = []
-			for j in range(traj_len):
-				gradient += [legibility_grads[user][j, :].dot(projection_grad[j])]
-				gradient_reg += [gradient_regularizations[user][j, :].dot(projection_grad[j])]
-				beta_reg += [beta_regularizations[user][j, :].dot(projection_grad[j])]
-
-			gradient = np.array(gradient)
-			gradient = gradient.dot(transform_matrix)
-
-			for j in range(traj_dim):
-				grad_sum[i, :, j] += M_inv.dot(gradient[:, j])
-
-			gradient_reg = np.array(gradient_reg)
-			beta_reg = np.array(beta_reg)
-			grad_reg_sum[i] += gradient_reg.dot(transform_matrix)
-			beta_reg_sum[i] += beta_reg.dot(transform_matrix)
-
-		best_grad = np.argmax(np.sum(grad_sum, axis=0))
-
-		learn_rate = float(learn_rate)
-		grad_step = learn_rate * grad_sum[best_grad] - learn_rate * grad_reg_sum[best_grad] - beta_reg_sum[best_grad]
-		grad_step[0] = 0
-		grad_step[-1] = 0
-
-		return self.update_trajectory(grad_step, joint_trajectory, world_trajectory)
-
-	def user_average_optimization(self, world_trajectory: np.ndarray, legibility_grads: dict,
-								  gradient_regularizations: dict, beta_regularizations: dict,
-								  joint_trajectory: np.ndarray, learn_rate: float = 0.01):
+	def combine_user_legibilities(self, legibility_grads: dict, user_regularizations: dict,
+								  world_trajectory: np.ndarray):
 
 		traj_len, traj_dim = world_trajectory.shape
 		grad_sum = np.zeros((traj_len, traj_dim))
-		grad_reg_sum = np.zeros((traj_len, traj_dim))
-		beta_reg_sum = np.zeros((traj_len, traj_dim))
+		regularization_sum = np.zeros((traj_len, traj_dim))
 
 		for i in range(self._n_users):
 
@@ -229,30 +180,52 @@ class LegibleMovement(object):
 			M_inv = np.linalg.inv(user_M)
 
 			gradient = []
+			regularization = []
 			for j in range(traj_len):
 				gradient += [legibility_grads[user][j, :].dot(projection_grad[j])]
+				regularization += [user_regularizations[user][j, :].dot(projection_grad[j])]
 
 			gradient = np.array(gradient)
+			regularization = np.array(regularization)
 			gradient = gradient.dot(transform_matrix)
+			regularization = regularization.dot(transform_matrix)
 
 			for j in range(traj_dim):
 				grad_sum[:, j] += M_inv.dot(gradient[:, j])
+				regularization_sum[:, j] += M_inv.dot(regularization[:, j])
 
-			grad_reg_sum += gradient_regularizations[user].dot(transform_matrix)
-			beta_reg_sum += beta_regularizations[user].dot(transform_matrix)
+		return grad_sum, regularization_sum
 
-		grad_sum = grad_sum / float(self._n_users)
-		grad_reg_sum = grad_reg_sum / float(self._n_users)
-		beta_reg_sum = beta_reg_sum / float(self._n_users)
+	def max_optimization(self, world_trajectory: np.ndarray, legibility_grads: dict, regularizations: dict,
+						 joint_trajectory: np.ndarray, learn_rate: float = 0.01):
+
+		grad_sum, regularization_sum = self.combine_user_legibilities(legibility_grads, regularizations,
+																	  world_trajectory)
+
+		best_grad = np.argmax(np.sum(grad_sum, axis=0))
 		learn_rate = float(learn_rate)
-		grad_step = learn_rate * grad_sum - learn_rate * grad_reg_sum - beta_reg_sum
+		grad_step = learn_rate * (grad_sum[best_grad] - regularization_sum[best_grad])
 		grad_step[0] = 0
 		grad_step[-1] = 0
 
 		return self.update_trajectory(grad_step, joint_trajectory, world_trajectory)
 
-	def user_max_min_optimization(self, world_trajectory: np.ndarray, legibility_grads: dict,
-								  gradient_regularizations: dict, beta_regularizations: dict,
+	def user_average_optimization(self, world_trajectory: np.ndarray, legibility_grads: dict, regularizations: dict,
+								  joint_trajectory: np.ndarray, learn_rate: float = 0.01):
+
+		grad_sum, regularization_sum = self.combine_user_legibilities(legibility_grads, regularizations,
+																	  world_trajectory)
+
+		grad_sum = grad_sum / float(self._n_users)
+		regularization_sum = regularization_sum / float(self._n_users)
+		learn_rate = float(learn_rate)
+		grad_step = learn_rate * (grad_sum - regularization_sum)
+		grad_step[0] = 0
+		grad_step[-1] = 0
+
+		return self.update_trajectory(grad_step, joint_trajectory, world_trajectory)
+
+	def user_max_min_optimization(self, world_trajectory: np.ndarray, legibility_grads: dict, regularizations: dict,
 								  joint_trajectory: np.ndarray, learn_rate: float=0.01):
 
 		updated_trajs = {}
@@ -269,20 +242,22 @@ class LegibleMovement(object):
 			M_inv = np.linalg.inv(user_M)
 
 			gradient = []
+			regularization = []
 			for j in range(traj_len):
 				gradient += [legibility_grads[user][j, :].dot(projection_grad[j])]
+				regularization += [regularizations[user][j, :].dot(projection_grad[j])]
 
 			gradient = np.array(gradient)
+			regularization = np.array(regularization)
 			gradient = gradient.dot(transform_matrix)
+			regularization = regularization.dot(transform_matrix)
 
 			for j in range(traj_dim):
 				gradient[:, j] = M_inv.dot(gradient[:, j])
-
-			gradient_reg = gradient_regularizations[user].dot(transform_matrix)
-			beta_reg = beta_regularizations[user].dot(transform_matrix)
+				regularization[:, j] = M_inv.dot(regularization[:, j])
 
 			learn_rate = float(learn_rate)
-			grad_step = learn_rate * gradient - learn_rate * gradient_reg - beta_reg
+			grad_step = learn_rate * (gradient - regularization)
 			grad_step[0] = 0
 			grad_step[-1] = 0
 
@@ -330,9 +305,8 @@ class LegibleMovement(object):
 		future_costs = {}
 		prev_traj_grad_costs = {}
 		remain_traj_grad_costs = {}
-		grad_legibility = {}
-		grad_legibility_reg = {}
-		beta_reg = {}
+		legibility_gradients = {}
+		regularizations = {}
 
 		# convert from joint space to world space if need be
 		if self._joint_optim:
@@ -373,26 +347,21 @@ class LegibleMovement(object):
 					future_costs[user_id][target] = best_costs
 					remain_traj_grad_costs[user_id][target] = remain_traj_grad
 
-			grad_legibility[user_id] = self.gradientStep(world_trajectory, robot_target, future_costs,
+			legibility_gradients[user_id] = self.gradientStep(world_trajectory, robot_target, future_costs,
 														 remain_traj_grad_costs, user_id)
 			if self._regularization > 0:
-				grad_legibility_reg[user_id] = self.gradientRegularization(world_trajectory, grad_legibility[user_id],
-																		   prev_traj_grad_costs[user_id], user_id)
-				beta_reg[user_id] = self.betaRegularization(world_trajectory, prev_traj_grad_costs[user_id],
-															traj_costs[user_id][robot_target], user_id)
-
+				regularizations[user_id] = self._regularization * prev_traj_grad_costs[user_id]
 			else:
-				grad_legibility_reg[user_id] = np.zeros(world_trajectory.shape)
-				beta_reg[user_id] = np.zeros(world_trajectory.shape)
+				regularizations[user_id] = np.zeros(world_trajectory.shape)
 
 		if optimization_criteria.find('average') != -1 or optimization_criteria.find('avg') != -1:
-			improved_traj = self.user_average_optimization(world_trajectory, grad_legibility, grad_legibility_reg,
-														   beta_reg, trajectory, learn_rate)
+			improved_traj = self.user_average_optimization(world_trajectory, legibility_gradients, regularizations,
+														   trajectory, learn_rate)
 		elif optimization_criteria.find('min') != -1 and optimization_criteria.find('max') != -1:
-			improved_traj = self.user_max_min_optimization(world_trajectory, grad_legibility, grad_legibility_reg,
-														   beta_reg, trajectory, learn_rate)
+			improved_traj = self.user_max_min_optimization(world_trajectory, legibility_gradients, regularizations,
+														   trajectory, learn_rate)
 		else:
-			improved_traj = self.max_optimization(world_trajectory, grad_legibility, grad_legibility_reg,
-														   beta_reg, learn_rate)
+			improved_traj = self.max_optimization(world_trajectory, legibility_gradients, regularizations,
+												  trajectory, learn_rate)
 
 		return improved_traj
